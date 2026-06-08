@@ -3,7 +3,7 @@
   "title": "You Are My Sunshine",
   "subtitle": "Beginner A / D / E chord sheet practice",
   "language": "English",
-  "level": "Beginner",
+  "level": "Intermediate",
   "capo": "No Capo",
   "tuning": "E A D G B E",
   "sheetType": "chord-sheet",
@@ -16,11 +16,11 @@
   ],
   "chords": "A · D · E · A/D · A/C#",
   "time": "4/4",
-  "tempo": "90 BPM",
+  "tempo": "80 BPM",
   "key": "A",
   "strumming": {
-    "pattern": "↓ ↓↑ ↑ ↓↑",
-    "count": "Count: 1  2&  &  4&",
+    "pattern": "↓ ↓↑↓ ↓ ↑",
+    "count": "Count: 1  &  2  & ",
     "note": "Use the same basic down/down-up/up/down-up pattern. For this song, keep the feel gentle and even."
   },
   "chordSheet": {
@@ -43,20 +43,20 @@
         "name": "Verse 1",
         "lines": [
           {
-            "lyric": "[Add verse line 1 here]",
+            "lyric": "[The other night dear as I lay sleeping]",
             "chords": [
               {
                 "chord": "A",
-                "position": 0
+                "position": 10
               }
             ]
           },
           {
-            "lyric": "[Add verse line 2 here]",
+            "lyric": "[I dreamed I held you in my arms]",
             "chords": [
               {
                 "chord": "D",
-                "position": 0
+                "position": 11
               },
               {
                 "chord": "A",
