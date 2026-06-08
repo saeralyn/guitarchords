@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Song Sheet</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="compact-header">
+    <nav class="nav">
+      <a class="logo" href="index.html">🎸 Saeralyn Chords</a>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section id="statusBox" class="status-card">Loading song...</section>
+    <section id="songHero" class="song-hero"></section>
+
+    <section class="card">
+      <h2>Strumming Pattern</h2>
+      <div id="strummingBox" class="code-box"></div>
+    </section>
+
+    <section class="card">
+      <h2>Chord Sheet</h2>
+      <div id="sheet" class="sheet"></div>
+    </section>
+
+    <section class="card optional" id="tabSection">
+      <h2>Guitar TAB / Rhythm</h2>
+      <p class="muted">
+        This section is for 六线谱 / TAB-style rhythm. It is not a full automatic music score engine yet.
+      </p>
+      <div id="tabBox" class="tab-box"></div>
+    </section>
+
+    <section class="card">
+      <h2>Capo Notes</h2>
+      <div id="capoNotes"></div>
+    </section>
+
+    <section class="card">
+      <h2>Practice Notes</h2>
+      <div id="practiceNotes"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="index.html">← Back to Home</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

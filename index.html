@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saeralyn Guitar Chords</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="logo" href="index.html">🎸 Saeralyn Chords</a>
+      <a href="index.html">Home</a>
+    </nav>
+
+    <section class="hero">
+      <p class="eyebrow">Personal Guitar Songbook</p>
+      <h1>My Guitar Chord Library</h1>
+      <p class="hero-text">
+        Add a new JSON file into the songs folder. GitHub Actions will update the song list automatically.
+      </p>
+    </section>
+  </header>
+
+  <main class="container">
+    <section class="toolbar">
+      <input id="searchInput" type="search" placeholder="Search song title, chord, language..." />
+      <select id="levelFilter">
+        <option value="all">All Levels</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+      </select>
+    </section>
+
+    <section class="status-card" id="statusBox">Loading songs...</section>
+
+    <section>
+      <h2 class="section-title">Song List</h2>
+      <div id="songGrid" class="song-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Built as a personal guitar practice site.
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+{
+  "id": "new-song",
+  "title": "New Song Title",
+  "subtitle": "Short description",
+  "language": "Chinese / English",
+  "level": "Beginner",
+  "capo": "No Capo",
+  "chords": "C · G · Am · F",
+  "time": "4/4",
+  "tempo": "80 BPM",
+  "key": "C",
+  "strumming": {
+    "pattern": "↓ ↓↑ ↑ ↓↑",
+    "count": "Count: 1  2&  &  4&",
+    "note": "Write your strumming note here."
+  },
+  "lines": [
+    {
+      "chord": "C",
+      "beats": [
+        "1",
+        "",
+        "2",
+        "&",
+        "",
+        "4",
+        "&"
+      ],
+      "strums": [
+        "↓",
+        "",
+        "↓",
+        "↑",
+        "↑",
+        "↓",
+        "↑"
+      ],
+      "lyrics": [
+        "填",
+        "你",
+        "的",
+        "歌",
+        "",
+        "词",
+        "啊"
+      ]
+    }
+  ],
+  "tab": {
+    "systems": [
+      {
+        "title": "Optional TAB section",
+        "lines": [
+          "e|----------------------|",
+          "B|----------------------|",
+          "G|----------------------|",
+          "D|----------------------|",
+          "A|----------------------|",
+          "E|----------------------|",
+          "    ↓   ↓ ↑   ↑   ↓ ↑",
+          "    填  你 的 歌  词 啊"
+        ]
+      }
+    ]
+  },
+  "capoNotes": [
+    [
+      "No Capo",
+      "C shape",
+      "C key"
+    ],
+    [
+      "Capo 2",
+      "C shape",
+      "D key"
+    ]
+  ],
+  "practiceNotes": [
+    "Write practice notes here."
+  ]
+}

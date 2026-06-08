@@ -1,0 +1,12 @@
+[
+  {
+    "id": "new-song-template",
+    "title": "New Song Template",
+    "path": "songs/new-song-template.json"
+  },
+  {
+    "id": "two-tigers",
+    "title": "两只老虎 / Are You Sleeping",
+    "path": "songs/two-tigers.json"
+  }
+]
