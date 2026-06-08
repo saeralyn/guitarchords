@@ -47,7 +47,7 @@
             "chords": [
               {
                 "chord": "A",
-                "position": 10
+                "position": 12
               }
             ]
           },
@@ -56,33 +56,33 @@
             "chords": [
               {
                 "chord": "D",
-                "position": 11
+                "position": 13
               },
               {
                 "chord": "A",
-                "position": 22
+                "position": 27
               }
             ]
           },
           {
-            "lyric": "[Add verse line 3 here]",
+            "lyric": "[When I awoke dear I was mistaken]",
             "chords": [
               {
                 "chord": "D",
-                "position": 0
+                "position": 7
               },
               {
                 "chord": "A",
-                "position": 22
+                "position": 27
               }
             ]
           },
           {
-            "lyric": "[Add verse line 4 here]",
+            "lyric": "[So I bowed my head and I cried]",
             "chords": [
               {
                 "chord": "A",
-                "position": 0
+                "position": 5
               },
               {
                 "chord": "E",
