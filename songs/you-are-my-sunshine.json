@@ -1,0 +1,36 @@
+{
+  "id": "you-are-my-sunshine",
+  "title": "You Are My Sunshine",
+
+  "sections": [
+    {
+      "type": "intro",
+      "progression": [
+        ["A"],
+        ["A"],
+        ["D"],
+        ["A"],
+        ["D"],
+        ["A"],
+        ["A","E"],
+        ["A"]
+      ]
+    },
+
+    {
+      "type": "verse",
+      "lyrics": [
+        "...",
+        "...",
+        "...",
+        "..."
+      ],
+      "chords": [
+        ["A"],
+        ["D","A"],
+        ["D","A"],
+        ["A","E","A"]
+      ]
+    }
+  ]
+}
