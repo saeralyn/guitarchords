@@ -52,3 +52,8 @@ C, G, A, D, E, F, FMaj7, Am, Em, Dm, Fm.
 ## Replace old files
 
 Upload all files/folders in this zip to the repository root.
+
+
+## Latest chord library update
+
+Added Easy F, Fm variations, B/Bm barre chords, B7, Easy Bm, and Bm7. Chord Library now uses category buttons instead of search.

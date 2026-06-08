@@ -58,6 +58,11 @@ function findChordDefinition(chordName) {
   );
 }
 
+function getChordCategories(chord) {
+  const category = chord.category || "Other";
+  return Array.isArray(category) ? category : [category];
+}
+
 function renderChordDiagram(chord) {
   const width = 150;
   const height = 190;
@@ -69,7 +74,7 @@ function renderChordDiagram(chord) {
   const frets = 5;
 
   let svg = `
-    <div class="chord-card" data-chord-category="${chord.category || "Other"}">
+    <div class="chord-card" data-chord-category="${getChordCategories(chord).join(" ")}">
       <div class="chord-name">${chord.name}</div>
       <svg class="chord-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="${chord.name} chord diagram">
         <text x="${left}" y="24" class="small-label">E</text>
@@ -204,7 +209,22 @@ function renderChordLibraryPage() {
   if (!grid) return;
 
   const allChordKeys = Object.keys(CHORD_LIBRARY);
-  const categories = ["All Chords", ...new Set(Object.values(CHORD_LIBRARY).map(chord => chord.category || "Other"))];
+  const preferredCategories = [
+    "All Chords",
+    "Main Chords",
+    "Open Chords",
+    "Minor Chords",
+    "F Variations",
+    "Fm Variations",
+    "B Variations",
+    "Bm Variations",
+    "Barre Chords",
+    "Beginner Variations"
+  ];
+  const discoveredCategories = [...new Set(Object.values(CHORD_LIBRARY).flatMap(getChordCategories))];
+  const categories = preferredCategories.filter(category =>
+    category === "All Chords" || discoveredCategories.includes(category)
+  );
 
   if (categoryButtons) {
     categoryButtons.innerHTML = categories.map((category, index) => `
@@ -223,7 +243,7 @@ function renderChordLibraryPage() {
   function renderChordCategory(category) {
     const keys = category === "All Chords"
       ? allChordKeys
-      : allChordKeys.filter(key => (CHORD_LIBRARY[key].category || "Other") === category);
+      : allChordKeys.filter(key => getChordCategories(CHORD_LIBRARY[key]).includes(category));
     renderChordGrid("#chordLibraryGrid", keys);
   }
 
