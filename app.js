@@ -254,6 +254,78 @@ function renderTab(tab) {
   }).join("");
 }
 
+
+function padChordLine(chords, lyric) {
+  const length = Math.max(lyric.length, 1);
+  const chars = Array(length + 8).fill(" ");
+
+  (chords || []).forEach(item => {
+    const chord = item.chord || "";
+    const pos = Math.max(0, item.position || 0);
+    for (let i = 0; i < chord.length; i++) {
+      chars[pos + i] = chord[i];
+    }
+  });
+
+  return chars.join("").trimEnd();
+}
+
+function renderChordSheetSections(song) {
+  const sections = song.chordSheet?.sections || [];
+  if (!sections.length) return "";
+
+  return `
+    <div class="chord-sheet-box">
+      ${sections.map(section => `
+        <div class="chord-sheet-section">
+          <h3>[${section.name}]</h3>
+          ${
+            section.progression
+              ? `<pre class="progression-row">${section.progression.join("\\n")}</pre>`
+              : ""
+          }
+          ${
+            (section.lines || []).map(line => {
+              const lyric = line.lyric || "";
+              const chordRow = padChordLine(line.chords || [], lyric);
+              return `
+                <pre class="chord-sheet-line chord-row">${chordRow}</pre>
+                <pre class="chord-sheet-line lyric-row">${lyric}</pre>
+              `;
+            }).join("")
+          }
+        </div>
+      `).join("")}
+    </div>
+  `;
+}
+
+function renderGridSheet(song) {
+  return (song.lines || []).map(line => {
+    const cols = Math.max(line.beats?.length || 0, line.strums?.length || 0, line.lyrics?.length || 0);
+
+    const makeCells = (items = [], className) => {
+      const cells = [];
+      for (let i = 0; i < cols; i++) {
+        const value = items[i] || "";
+        cells.push(`<div class="cell ${className} ${value ? "" : "empty"}">${value || "·"}</div>`);
+      }
+      return cells.join("");
+    };
+
+    return `
+      <article class="song-line">
+        <div class="chord-label">${line.chord}</div>
+        <div class="align-grid" style="--cols: ${cols};">
+          ${makeCells(line.beats, "beat-cell")}
+          ${makeCells(line.strums, "strum-cell")}
+          ${makeCells(line.lyrics, "lyric-cell")}
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
 function renderSongPage() {
   const hero = document.querySelector("#songHero");
   const strummingBox = document.querySelector("#strummingBox");
@@ -278,10 +350,13 @@ function renderSongPage() {
   document.title = song.title;
   showStatus("Song loaded.", "success");
 
+  const formatLabel = song.sheetType === "chord-sheet" ? "Chord Sheet" : "Strumming Grid";
+
   hero.innerHTML = `
     <h1>${song.title}</h1>
     <p>${song.subtitle || ""}</p>
     <div class="info-grid">
+      <div class="info-card"><span>Format</span><strong class="song-format-badge">${formatLabel}</strong></div>
       <div class="info-card"><span>Capo</span><strong>${song.capo || "No Capo"}</strong></div>
       <div class="info-card"><span>Chords</span><strong>${song.chords || "-"}</strong></div>
       <div class="info-card"><span>Time</span><strong>${song.time || "-"}</strong></div>
@@ -301,29 +376,11 @@ function renderSongPage() {
     `;
   }
 
-  sheet.innerHTML = (song.lines || []).map(line => {
-    const cols = Math.max(line.beats?.length || 0, line.strums?.length || 0, line.lyrics?.length || 0);
-
-    const makeCells = (items = [], className) => {
-      const cells = [];
-      for (let i = 0; i < cols; i++) {
-        const value = items[i] || "";
-        cells.push(`<div class="cell ${className} ${value ? "" : "empty"}">${value || "·"}</div>`);
-      }
-      return cells.join("");
-    };
-
-    return `
-      <article class="song-line">
-        <div class="chord-label">${line.chord}</div>
-        <div class="align-grid" style="--cols: ${cols};">
-          ${makeCells(line.beats, "beat-cell")}
-          ${makeCells(line.strums, "strum-cell")}
-          ${makeCells(line.lyrics, "lyric-cell")}
-        </div>
-      </article>
-    `;
-  }).join("");
+  if (song.sheetType === "chord-sheet") {
+    sheet.innerHTML = renderChordSheetSections(song);
+  } else {
+    sheet.innerHTML = renderGridSheet(song);
+  }
 
   const renderedTab = renderTab(song.tab);
   if (renderedTab && tabBox && tabSection) {
@@ -360,6 +417,7 @@ function renderSongPage() {
     `;
   }
 }
+
 
 async function start() {
   try {

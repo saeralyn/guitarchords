@@ -517,3 +517,54 @@ input, select {
 .song-grid.compact {
   margin-top: 16px;
 }
+
+
+/* Chord sheet mode */
+.chord-sheet-box {
+  background: #f8fafc;
+  color: #111827;
+  border-radius: 18px;
+  padding: 22px;
+  overflow-x: auto;
+}
+
+.chord-sheet-section {
+  margin-bottom: 28px;
+}
+
+.chord-sheet-section h3 {
+  color: #0f172a;
+  font-size: 18px;
+  margin: 0 0 12px;
+}
+
+.chord-sheet-line {
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+  white-space: pre;
+  line-height: 1.45;
+  font-size: 15px;
+  margin: 8px 0;
+}
+
+.chord-row {
+  color: #111827;
+  font-weight: 900;
+}
+
+.lyric-row {
+  color: #111827;
+}
+
+.progression-row {
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+  background: #e2e8f0;
+  color: #0f172a;
+  border-radius: 12px;
+  padding: 12px;
+  white-space: pre-wrap;
+  line-height: 1.7;
+}
+
+.song-format-badge {
+  color: var(--accent-blue);
+}

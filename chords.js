@@ -132,6 +132,20 @@ const CHORD_LIBRARY = {
     frets: ["x", "2", "0", "2", "0", "2"],
     fingers: ["", "1", "", "2", "", "3"],
     startFret: 1
+  },
+  "A/D": {
+    name: "A/D",
+    category: ["all", "slash", "a-variations"],
+    frets: ["x", "5", "2", "2", "2", "x"],
+    fingers: ["", "4", "1", "1", "1", ""],
+    startFret: 1
+  },
+  "A/C#": {
+    name: "A/C#",
+    category: ["all", "slash", "a-variations"],
+    frets: ["x", "4", "2", "2", "2", "x"],
+    fingers: ["", "3", "1", "1", "1", ""],
+    startFret: 1
   }
 };
 
@@ -140,6 +154,8 @@ const CHORD_CATEGORIES = [
   { id: "main", label: "Main Chords" },
   { id: "open", label: "Open Chords" },
   { id: "minor", label: "Minor Chords" },
+  { id: "slash", label: "Slash Chords" },
+  { id: "a-variations", label: "A Variations" },
   { id: "f-variations", label: "F Variations" },
   { id: "fm-variations", label: "Fm Variations" },
   { id: "b-variations", label: "B Variations" },

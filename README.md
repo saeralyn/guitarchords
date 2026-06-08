@@ -57,3 +57,18 @@ Upload all files/folders in this zip to the repository root.
 ## Latest chord library update
 
 Added Easy F, Fm variations, B/Bm barre chords, B7, Easy Bm, and Bm7. Chord Library now uses category buttons instead of search.
+
+
+## Song formats
+
+This site supports two song formats:
+
+1. `sheetType` omitted or normal grid mode:
+   - Good for nursery songs like 两只老虎 / 小星星.
+   - Uses `lines`, `beats`, `strums`, and `lyrics`.
+
+2. `sheetType: "chord-sheet"`:
+   - Good for English chord sheets.
+   - Uses `chordSheet.sections`.
+   - Chords are placed by `position` above each lyric line.
+

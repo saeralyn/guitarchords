@@ -8,5 +8,10 @@
     "id": "two-tigers",
     "title": "两只老虎 / Are You Sleeping",
     "path": "songs/two-tigers.json"
+  },
+  {
+    "id": "you-are-my-sunshine",
+    "title": "You Are My Sunshine",
+    "path": "songs/you-are-my-sunshine.json"
   }
 ]

@@ -1,36 +1,289 @@
 {
   "id": "you-are-my-sunshine",
   "title": "You Are My Sunshine",
-
-  "sections": [
-    {
-      "type": "intro",
-      "progression": [
-        ["A"],
-        ["A"],
-        ["D"],
-        ["A"],
-        ["D"],
-        ["A"],
-        ["A","E"],
-        ["A"]
-      ]
-    },
-
-    {
-      "type": "verse",
-      "lyrics": [
-        "...",
-        "...",
-        "...",
-        "..."
-      ],
-      "chords": [
-        ["A"],
-        ["D","A"],
-        ["D","A"],
-        ["A","E","A"]
-      ]
-    }
+  "subtitle": "Beginner A / D / E chord sheet practice",
+  "language": "English",
+  "level": "Beginner",
+  "capo": "No Capo",
+  "tuning": "E A D G B E",
+  "sheetType": "chord-sheet",
+  "chordList": [
+    "A",
+    "D",
+    "E",
+    "A/D",
+    "A/C#"
+  ],
+  "chords": "A · D · E · A/D · A/C#",
+  "time": "4/4",
+  "tempo": "90 BPM",
+  "key": "A",
+  "strumming": {
+    "pattern": "↓ ↓↑ ↑ ↓↑",
+    "count": "Count: 1  2&  &  4&",
+    "note": "Use the same basic down/down-up/up/down-up pattern. For this song, keep the feel gentle and even."
+  },
+  "chordSheet": {
+    "notes": [
+      "Tuning: E A D G B E",
+      "Key: A",
+      "Capo: No Capo",
+      "A/D = x522(2)x",
+      "A/C# = x422(2)x"
+    ],
+    "sections": [
+      {
+        "name": "Intro",
+        "progression": [
+          "| A | A | D | A |",
+          "| D | A | A E | A |"
+        ]
+      },
+      {
+        "name": "Verse 1",
+        "lines": [
+          {
+            "lyric": "[Add verse line 1 here]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 0
+              }
+            ]
+          },
+          {
+            "lyric": "[Add verse line 2 here]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 0
+              },
+              {
+                "chord": "A",
+                "position": 22
+              }
+            ]
+          },
+          {
+            "lyric": "[Add verse line 3 here]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 0
+              },
+              {
+                "chord": "A",
+                "position": 22
+              }
+            ]
+          },
+          {
+            "lyric": "[Add verse line 4 here]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 0
+              },
+              {
+                "chord": "E",
+                "position": 12
+              },
+              {
+                "chord": "A",
+                "position": 24
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Chorus",
+        "lines": [
+          {
+            "lyric": "[Add chorus line 1 here]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 0
+              }
+            ]
+          },
+          {
+            "lyric": "[Add chorus line 2 here]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 0
+              },
+              {
+                "chord": "A",
+                "position": 24
+              }
+            ]
+          },
+          {
+            "lyric": "[Add chorus line 3 here]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 0
+              },
+              {
+                "chord": "A",
+                "position": 24
+              }
+            ]
+          },
+          {
+            "lyric": "[Add chorus ending line here]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 0
+              },
+              {
+                "chord": "E",
+                "position": 12
+              },
+              {
+                "chord": "A",
+                "position": 24
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Instrumental",
+        "progression": [
+          "| A | A | D | A |",
+          "| D | A | A E | A |"
+        ]
+      },
+      {
+        "name": "Verse 2",
+        "lines": [
+          {
+            "lyric": "[Add verse 2 line 1 here]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 0
+              }
+            ]
+          },
+          {
+            "lyric": "[Add verse 2 line 2 here]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 0
+              },
+              {
+                "chord": "A",
+                "position": 24
+              }
+            ]
+          },
+          {
+            "lyric": "[Add verse 2 line 3 here]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 0
+              },
+              {
+                "chord": "A",
+                "position": 24
+              }
+            ]
+          },
+          {
+            "lyric": "[Add verse 2 line 4 here]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 0
+              },
+              {
+                "chord": "E",
+                "position": 12
+              },
+              {
+                "chord": "A",
+                "position": 24
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Final Chorus Ending",
+        "lines": [
+          {
+            "lyric": "[Add final ending line here]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 0
+              },
+              {
+                "chord": "E",
+                "position": 12
+              },
+              {
+                "chord": "A",
+                "position": 24
+              },
+              {
+                "chord": "A/D",
+                "position": 30
+              },
+              {
+                "chord": "A/C#",
+                "position": 36
+              },
+              {
+                "chord": "A",
+                "position": 43
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "tab": {
+    "systems": [
+      {
+        "title": "Intro / Instrumental",
+        "lines": [
+          "| A | A | D | A |",
+          "| D | A | A E | A |"
+        ]
+      }
+    ]
+  },
+  "capoNotes": [
+    [
+      "No Capo",
+      "A / D / E",
+      "A 调"
+    ],
+    [
+      "Capo 2",
+      "G / C / D shapes",
+      "A 调"
+    ],
+    [
+      "Capo 4",
+      "F / Bb / C shapes",
+      "A 调"
+    ]
+  ],
+  "practiceNotes": [
+    "This song uses chord-sheet mode instead of the children's strumming-grid mode.",
+    "Start with A, D, and E first.",
+    "A/D and A/C# are slash chords. Add them only after the main progression feels stable."
   ]
 }
