@@ -10,8 +10,9 @@
   <header class="site-header">
     <nav class="nav">
       <a class="logo" href="index.html">🎸 Chords Practice 🎸</a>
-      <a href="#songs">Songs</a>
-      <a href="#chords">Chord Library</a>
+      <a href="index.html">Home</a>
+      <a href="songs.html">Songs</a>
+      <a href="chords.html">Chord Library</a>
     </nav>
 
     <section class="hero">
@@ -24,26 +25,30 @@
   </header>
 
   <main class="container">
-    <section class="toolbar">
-      <input id="searchInput" type="search" placeholder="Search song title, chord, language..." />
-      <select id="levelFilter">
-        <option value="all">All Levels</option>
-        <option value="Beginner">Beginner</option>
-        <option value="Intermediate">Intermediate</option>
-      </select>
-    </section>
+    <section class="status-card" id="statusBox">Loading latest songs...</section>
 
-    <section class="status-card" id="statusBox">Loading songs...</section>
+    <section class="home-layout">
+      <section>
+        <div class="section-heading-row">
+          <h2 class="section-title">Latest Songs</h2>
+          <a class="text-link" href="songs.html">View All Songs →</a>
+        </div>
+        <div id="latestSongGrid" class="song-grid"></div>
+      </section>
 
-    <section id="songs">
-      <h2 class="section-title">Song List</h2>
-      <div id="songGrid" class="song-grid"></div>
-    </section>
-
-    <section id="chords" class="card">
-      <h2>Chord Library</h2>
-      <p class="muted">Common open chords. These diagrams are auto-detected and shown inside each song page.</p>
-      <div id="chordLibraryGrid" class="chord-grid"></div>
+      <section class="card">
+        <h2>Quick Menu</h2>
+        <div class="quick-menu">
+          <a class="quick-card" href="songs.html">
+            <strong>🎵 Songs</strong>
+            <span>Browse all saved chord sheets.</span>
+          </a>
+          <a class="quick-card" href="chords.html">
+            <strong>🎸 Chord Library</strong>
+            <span>View chord diagrams, including Easy F.</span>
+          </a>
+        </div>
+      </section>
     </section>
   </main>
 

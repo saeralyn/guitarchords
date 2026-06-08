@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Songs - Guitar Chords Practice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="compact-header">
+    <nav class="nav">
+      <a class="logo" href="index.html">🎸 Chords Practice 🎸</a>
+      <a href="index.html">Home</a>
+      <a href="songs.html">Songs</a>
+      <a href="chords.html">Chord Library</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="page-title-card">
+      <p class="eyebrow">Songbook</p>
+      <h1>Songs</h1>
+      <p class="muted">Search and open saved guitar chord sheets.</p>
+    </section>
+
+    <section class="toolbar">
+      <input id="searchInput" type="search" placeholder="Search song title, chord, language..." />
+      <select id="levelFilter">
+        <option value="all">All Levels</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+      </select>
+    </section>
+
+    <section class="status-card" id="statusBox">Loading songs...</section>
+
+    <section>
+      <h2 class="section-title">Song List</h2>
+      <div id="songGrid" class="song-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Built as a personal guitar practice site.
+  </footer>
+
+  <script src="chords.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

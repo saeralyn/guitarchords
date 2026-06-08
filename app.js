@@ -20,10 +20,11 @@ async function loadSongs() {
   const songPromises = manifest.map(async item => {
     const response = await fetch(item.path + "?cache=" + Date.now());
     if (!response.ok) throw new Error("Cannot load " + item.path);
-    return response.json();
+    const song = await response.json();
+    song.__manifestIndex = manifest.indexOf(item);
+    return song;
   });
-  const songs = await Promise.all(songPromises);
-  return songs.sort((a, b) => a.title.localeCompare(b.title));
+  return Promise.all(songPromises);
 }
 
 function createBadge(text) {
@@ -137,14 +138,42 @@ function renderChordGrid(targetSelector, chordNames) {
   target.innerHTML = diagrams || `<p class="muted">No chord diagrams available yet.</p>`;
 }
 
-function renderHomePage() {
+function getSongCardHtml(song) {
+  return `
+    <a class="song-card" href="song.html?id=${encodeURIComponent(song.id)}">
+      <h3>${song.title}</h3>
+      <p>${song.subtitle || ""}</p>
+      <div class="meta-line">
+        ${createBadge(song.level || "Unknown")}
+        ${createBadge(song.chords || "-")}
+        ${createBadge(song.capo || "No Capo")}
+        ${createBadge(song.tempo || "-")}
+      </div>
+    </a>
+  `;
+}
+
+function renderLatestSongs() {
+  const grid = document.querySelector("#latestSongGrid");
+  if (!grid) return;
+
+  const latestSongs = [...allSongs]
+    .sort((a, b) => (b.addedAt || b.__manifestIndex || 0) > (a.addedAt || a.__manifestIndex || 0) ? 1 : -1)
+    .slice(0, 5);
+
+  grid.innerHTML = latestSongs.map(getSongCardHtml).join("");
+
+  if (latestSongs.length === 0) {
+    grid.innerHTML = `<p class="muted">No song found.</p>`;
+  }
+}
+
+function renderSongsPage() {
   const grid = document.querySelector("#songGrid");
   const searchInput = document.querySelector("#searchInput");
   const levelFilter = document.querySelector("#levelFilter");
 
-  renderChordGrid("#chordLibraryGrid", Object.keys(CHORD_LIBRARY));
-
-  if (!grid) return;
+  if (!grid || !searchInput || !levelFilter) return;
 
   function renderList() {
     const keyword = searchInput.value.toLowerCase().trim();
@@ -157,18 +186,7 @@ function renderHomePage() {
       return matchesKeyword && matchesLevel;
     });
 
-    grid.innerHTML = filteredSongs.map(song => `
-      <a class="song-card" href="song.html?id=${encodeURIComponent(song.id)}">
-        <h3>${song.title}</h3>
-        <p>${song.subtitle || ""}</p>
-        <div class="meta-line">
-          ${createBadge(song.level || "Unknown")}
-          ${createBadge(song.chords || "-")}
-          ${createBadge(song.capo || "No Capo")}
-          ${createBadge(song.tempo || "-")}
-        </div>
-      </a>
-    `).join("");
+    grid.innerHTML = filteredSongs.map(getSongCardHtml).join("");
 
     if (filteredSongs.length === 0) {
       grid.innerHTML = `<p class="muted">No song found.</p>`;
@@ -177,6 +195,26 @@ function renderHomePage() {
 
   searchInput.addEventListener("input", renderList);
   levelFilter.addEventListener("change", renderList);
+  renderList();
+}
+
+function renderChordLibraryPage() {
+  const input = document.querySelector("#chordSearchInput");
+  const grid = document.querySelector("#chordLibraryGrid");
+  if (!grid) return;
+
+  function renderList() {
+    const keyword = (input?.value || "").toLowerCase().trim();
+    const chordNames = Object.keys(CHORD_LIBRARY).filter(key => {
+      const chord = CHORD_LIBRARY[key];
+      const text = `${key} ${chord.name} ${(chord.aliases || []).join(" ")}`.toLowerCase();
+      return text.includes(keyword);
+    });
+
+    renderChordGrid("#chordLibraryGrid", chordNames);
+  }
+
+  if (input) input.addEventListener("input", renderList);
   renderList();
 }
 
@@ -210,7 +248,7 @@ function renderSongPage() {
   const song = getSongById(id);
 
   if (!song) {
-    hero.innerHTML = `<h1>Song not found</h1><p>Please go back to the home page.</p>`;
+    hero.innerHTML = `<h1>Song not found</h1><p>Please go back to the Songs page.</p>`;
     showStatus("Song not found.", "error");
     return;
   }
@@ -303,12 +341,14 @@ async function start() {
   try {
     allSongs = await loadSongs();
     showStatus(`${allSongs.length} song(s) loaded.`, "success");
-    renderHomePage();
+    renderLatestSongs();
+    renderSongsPage();
+    renderChordLibraryPage();
     renderSongPage();
   } catch (error) {
     console.error(error);
     showStatus(error.message, "error");
-    renderChordGrid("#chordLibraryGrid", Object.keys(CHORD_LIBRARY));
+    renderChordLibraryPage();
   }
 }
 

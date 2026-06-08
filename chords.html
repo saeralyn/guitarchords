@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chord Library - Guitar Chords Practice</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="compact-header">
+    <nav class="nav">
+      <a class="logo" href="index.html">🎸 Chords Practice 🎸</a>
+      <a href="index.html">Home</a>
+      <a href="songs.html">Songs</a>
+      <a href="chords.html">Chord Library</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="page-title-card">
+      <p class="eyebrow">Reference</p>
+      <h1>Chord Library</h1>
+      <p class="muted">Common open chords and beginner-friendly F variations.</p>
+    </section>
+
+    <section class="toolbar single">
+      <input id="chordSearchInput" type="search" placeholder="Search chord, e.g. C, Am, Easy F..." />
+    </section>
+
+    <section class="card">
+      <h2>All Chords</h2>
+      <div id="chordLibraryGrid" class="chord-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Built as a personal guitar practice site.
+  </footer>
+
+  <script src="chords.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

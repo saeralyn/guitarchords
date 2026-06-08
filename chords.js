@@ -36,6 +36,13 @@ const CHORD_LIBRARY = {
     startFret: 1,
     barre: { fret: 1, fromString: 0, toString: 5 }
   },
+  EasyF: {
+    name: "Easy F",
+    aliases: ["F Easy", "EasyF", "F_easy"],
+    frets: ["x", "x", "3", "2", "1", "1"],
+    fingers: ["", "", "3", "2", "1", "1"],
+    startFret: 1
+  },
   FMaj7: {
     name: "FMaj7",
     aliases: ["Fmaj7", "Fmaj"],
