@@ -17,31 +17,33 @@
   </header>
 
   <main class="container">
-    <section class="page-title-card">
+    <section class="page-intro">
       <p class="eyebrow">Songbook</p>
       <h1>Songs</h1>
-      <p class="muted">Search and open saved guitar chord sheets.</p>
+      <p class="muted">Choose a song to open its chord sheet and practice guide.</p>
     </section>
 
-    <section class="toolbar">
-      <input id="searchInput" type="search" placeholder="Search song title, chord, language..." />
+    <section class="toolbar compact-toolbar">
       <select id="levelFilter">
         <option value="all">All Levels</option>
         <option value="Beginner">Beginner</option>
         <option value="Intermediate">Intermediate</option>
+      </select>
+      <select id="chordFilter">
+        <option value="all">All Chords</option>
       </select>
     </section>
 
     <section class="status-card" id="statusBox">Loading songs...</section>
 
     <section>
-      <h2 class="section-title">Song List</h2>
+      <h2 class="section-title">All Songs</h2>
       <div id="songGrid" class="song-grid"></div>
     </section>
   </main>
 
   <footer class="footer">
-    Built as a personal guitar practice site.
+    <a href="index.html">← Back to Home</a>
   </footer>
 
   <script src="chords.js"></script>

@@ -10,7 +10,7 @@ function showStatus(message, type = "normal") {
 async function loadManifest() {
   const response = await fetch("songs-manifest.json?cache=" + Date.now());
   if (!response.ok) {
-    throw new Error("Cannot load songs-manifest.json. Check whether GitHub Actions generated it.");
+    throw new Error("Cannot load songs-manifest.json. Check whether the file exists in the repository root.");
   }
   return response.json();
 }
@@ -20,11 +20,10 @@ async function loadSongs() {
   const songPromises = manifest.map(async item => {
     const response = await fetch(item.path + "?cache=" + Date.now());
     if (!response.ok) throw new Error("Cannot load " + item.path);
-    const song = await response.json();
-    song.__manifestIndex = manifest.indexOf(item);
-    return song;
+    return response.json();
   });
-  return Promise.all(songPromises);
+  const songs = await Promise.all(songPromises);
+  return songs.sort((a, b) => a.title.localeCompare(b.title));
 }
 
 function createBadge(text) {
@@ -32,7 +31,7 @@ function createBadge(text) {
 }
 
 function normalizeChordName(chord) {
-  return chord.trim().replace(/\s+/g, "");
+  return String(chord || "").trim().replace(/\s+/g, "");
 }
 
 function getChordNamesFromSong(song) {
@@ -70,7 +69,7 @@ function renderChordDiagram(chord) {
   const frets = 5;
 
   let svg = `
-    <div class="chord-card">
+    <div class="chord-card" data-chord-category="${chord.category || "Other"}">
       <div class="chord-name">${chord.name}</div>
       <svg class="chord-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="${chord.name} chord diagram">
         <text x="${left}" y="24" class="small-label">E</text>
@@ -138,84 +137,97 @@ function renderChordGrid(targetSelector, chordNames) {
   target.innerHTML = diagrams || `<p class="muted">No chord diagrams available yet.</p>`;
 }
 
-function getSongCardHtml(song) {
-  return `
-    <a class="song-card" href="song.html?id=${encodeURIComponent(song.id)}">
-      <h3>${song.title}</h3>
-      <p>${song.subtitle || ""}</p>
-      <div class="meta-line">
-        ${createBadge(song.level || "Unknown")}
-        ${createBadge(song.chords || "-")}
-        ${createBadge(song.capo || "No Capo")}
-        ${createBadge(song.tempo || "-")}
-      </div>
-    </a>
-  `;
-}
-
-function renderLatestSongs() {
-  const grid = document.querySelector("#latestSongGrid");
+function renderSongCards(targetSelector, songs, limit = null) {
+  const grid = document.querySelector(targetSelector);
   if (!grid) return;
 
-  const latestSongs = [...allSongs]
-    .sort((a, b) => (b.addedAt || b.__manifestIndex || 0) > (a.addedAt || a.__manifestIndex || 0) ? 1 : -1)
-    .slice(0, 5);
+  const shownSongs = limit ? songs.slice(0, limit) : songs;
 
-  grid.innerHTML = latestSongs.map(getSongCardHtml).join("");
+  grid.innerHTML = shownSongs.map(song => {
+    const chordCount = getChordNamesFromSong(song).length;
+    return `
+      <a class="song-card" href="song.html?id=${encodeURIComponent(song.id)}">
+        <h3>${song.title}</h3>
+        <p>${song.subtitle || ""}</p>
+        <div class="meta-line">
+          ${createBadge(song.level || "Unknown")}
+          ${createBadge(song.chords || "-")}
+          ${createBadge(`${chordCount} Chord${chordCount > 1 ? "s" : ""}`)}
+          ${createBadge(song.tempo || "-")}
+        </div>
+      </a>
+    `;
+  }).join("");
 
-  if (latestSongs.length === 0) {
+  if (shownSongs.length === 0) {
     grid.innerHTML = `<p class="muted">No song found.</p>`;
   }
 }
 
+function renderHomePage() {
+  const latestGrid = document.querySelector("#latestSongGrid");
+  if (!latestGrid) return;
+  renderSongCards("#latestSongGrid", allSongs, 5);
+}
+
 function renderSongsPage() {
   const grid = document.querySelector("#songGrid");
-  const searchInput = document.querySelector("#searchInput");
   const levelFilter = document.querySelector("#levelFilter");
+  const chordFilter = document.querySelector("#chordFilter");
+  if (!grid) return;
 
-  if (!grid || !searchInput || !levelFilter) return;
-
-  function renderList() {
-    const keyword = searchInput.value.toLowerCase().trim();
-    const level = levelFilter.value;
-
-    const filteredSongs = allSongs.filter(song => {
-      const searchable = `${song.title} ${song.subtitle} ${song.chords} ${song.language} ${song.level}`.toLowerCase();
-      const matchesKeyword = searchable.includes(keyword);
-      const matchesLevel = level === "all" || song.level === level;
-      return matchesKeyword && matchesLevel;
-    });
-
-    grid.innerHTML = filteredSongs.map(getSongCardHtml).join("");
-
-    if (filteredSongs.length === 0) {
-      grid.innerHTML = `<p class="muted">No song found.</p>`;
-    }
+  const chordNames = [...new Set(allSongs.flatMap(getChordNamesFromSong))].sort();
+  if (chordFilter) {
+    chordFilter.innerHTML = `<option value="all">All Chords</option>` + chordNames.map(name => `<option value="${name}">${name}</option>`).join("");
   }
 
-  searchInput.addEventListener("input", renderList);
-  levelFilter.addEventListener("change", renderList);
+  function renderList() {
+    const level = levelFilter?.value || "all";
+    const chord = chordFilter?.value || "all";
+    const filteredSongs = allSongs.filter(song => {
+      const matchesLevel = level === "all" || song.level === level;
+      const songChords = getChordNamesFromSong(song);
+      const matchesChord = chord === "all" || songChords.includes(chord);
+      return matchesLevel && matchesChord;
+    });
+    renderSongCards("#songGrid", filteredSongs);
+  }
+
+  levelFilter?.addEventListener("change", renderList);
+  chordFilter?.addEventListener("change", renderList);
   renderList();
 }
 
 function renderChordLibraryPage() {
-  const input = document.querySelector("#chordSearchInput");
   const grid = document.querySelector("#chordLibraryGrid");
+  const categoryButtons = document.querySelector("#chordCategoryButtons");
   if (!grid) return;
 
-  function renderList() {
-    const keyword = (input?.value || "").toLowerCase().trim();
-    const chordNames = Object.keys(CHORD_LIBRARY).filter(key => {
-      const chord = CHORD_LIBRARY[key];
-      const text = `${key} ${chord.name} ${(chord.aliases || []).join(" ")}`.toLowerCase();
-      return text.includes(keyword);
-    });
+  const allChordKeys = Object.keys(CHORD_LIBRARY);
+  const categories = ["All Chords", ...new Set(Object.values(CHORD_LIBRARY).map(chord => chord.category || "Other"))];
 
-    renderChordGrid("#chordLibraryGrid", chordNames);
+  if (categoryButtons) {
+    categoryButtons.innerHTML = categories.map((category, index) => `
+      <button class="filter-button ${index === 0 ? "active" : ""}" data-category="${category}">${category}</button>
+    `).join("");
+
+    categoryButtons.addEventListener("click", event => {
+      const button = event.target.closest("button");
+      if (!button) return;
+      document.querySelectorAll(".filter-button").forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+      renderChordCategory(button.dataset.category);
+    });
   }
 
-  if (input) input.addEventListener("input", renderList);
-  renderList();
+  function renderChordCategory(category) {
+    const keys = category === "All Chords"
+      ? allChordKeys
+      : allChordKeys.filter(key => (CHORD_LIBRARY[key].category || "Other") === category);
+    renderChordGrid("#chordLibraryGrid", keys);
+  }
+
+  renderChordCategory("All Chords");
 }
 
 function getSongById(id) {
@@ -248,7 +260,7 @@ function renderSongPage() {
   const song = getSongById(id);
 
   if (!song) {
-    hero.innerHTML = `<h1>Song not found</h1><p>Please go back to the Songs page.</p>`;
+    hero.innerHTML = `<h1>Song not found</h1><p>Please go back to the home page.</p>`;
     showStatus("Song not found.", "error");
     return;
   }
@@ -341,7 +353,7 @@ async function start() {
   try {
     allSongs = await loadSongs();
     showStatus(`${allSongs.length} song(s) loaded.`, "success");
-    renderLatestSongs();
+    renderHomePage();
     renderSongsPage();
     renderChordLibraryPage();
     renderSongPage();

@@ -7,6 +7,9 @@ manifest_path = Path("songs-manifest.json")
 items = []
 
 for path in sorted(songs_dir.glob("*.json")):
+    if "template" in path.stem.lower():
+        continue
+
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
         items.append({
