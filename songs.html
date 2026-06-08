@@ -3,50 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Songs - Guitar Chords Practice</title>
+  <title>Songs</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="compact-header">
-    <nav class="nav">
-      <a class="logo" href="index.html">🎸 Chords Practice 🎸</a>
-      <a href="index.html">Home</a>
-      <a href="songs.html">Songs</a>
-      <a href="chords.html">Chord Library</a>
-    </nav>
-  </header>
+<header class="compact-header">
+  <nav class="nav">
+    <a class="logo" href="index.html">🎸 Chords Practice 🎸</a>
+    <a href="index.html">Home</a>
+    <a href="songs.html">Songs</a>
+    <a href="chords.html">Chord Library</a>
+  </nav>
+</header>
+<main class="container">
+  <section class="song-hero">
+    <p class="eyebrow">Songbook</p>
+    <h1>Songs</h1>
+    <p>Choose a song to open its chord sheet and practice guide.</p>
+  </section>
 
-  <main class="container">
-    <section class="page-intro">
-      <p class="eyebrow">Songbook</p>
-      <h1>Songs</h1>
-      <p class="muted">Choose a song to open its chord sheet and practice guide.</p>
-    </section>
+  <section class="toolbar">
+    <select id="levelFilter">
+      <option value="all">All Levels</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+    </select>
+    <select id="chordFilter">
+      <option value="all">All Chords</option>
+    </select>
+  </section>
 
-    <section class="toolbar compact-toolbar">
-      <select id="levelFilter">
-        <option value="all">All Levels</option>
-        <option value="Beginner">Beginner</option>
-        <option value="Intermediate">Intermediate</option>
-      </select>
-      <select id="chordFilter">
-        <option value="all">All Chords</option>
-      </select>
-    </section>
+  <section id="statusBox" class="status-card">Loading songs...</section>
 
-    <section class="status-card" id="statusBox">Loading songs...</section>
-
-    <section>
-      <h2 class="section-title">All Songs</h2>
-      <div id="songGrid" class="song-grid"></div>
-    </section>
-  </main>
+  <section>
+    <h2 class="section-title">All Songs</h2>
+    <div id="allSongsGrid" class="song-grid"></div>
+  </section>
 
   <footer class="footer">
     <a href="index.html">← Back to Home</a>
   </footer>
-
-  <script src="chords.js"></script>
-  <script src="app.js"></script>
+</main>
+<script src="chords.js"></script>
+<script src="app.js"></script>
 </body>
 </html>

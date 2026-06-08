@@ -1,42 +1,42 @@
 const CHORD_LIBRARY = {
   C: {
     name: "C",
-    category: ["Main Chords", "Open Chords"],
+    category: ["all", "main", "open"],
     frets: ["x", "3", "2", "0", "1", "0"],
     fingers: ["", "3", "2", "", "1", ""],
     startFret: 1
   },
   G: {
     name: "G",
-    category: ["Main Chords", "Open Chords"],
+    category: ["all", "main", "open"],
     frets: ["3", "2", "0", "0", "0", "3"],
     fingers: ["2", "1", "", "", "", "3"],
     startFret: 1
   },
   A: {
     name: "A",
-    category: ["Main Chords", "Open Chords"],
+    category: ["all", "main", "open"],
     frets: ["x", "0", "2", "2", "2", "0"],
     fingers: ["", "", "1", "2", "3", ""],
     startFret: 1
   },
   D: {
     name: "D",
-    category: ["Main Chords", "Open Chords"],
+    category: ["all", "main", "open"],
     frets: ["x", "x", "0", "2", "3", "2"],
     fingers: ["", "", "", "1", "3", "2"],
     startFret: 1
   },
   E: {
     name: "E",
-    category: ["Main Chords", "Open Chords"],
+    category: ["all", "main", "open"],
     frets: ["0", "2", "2", "1", "0", "0"],
     fingers: ["", "2", "3", "1", "", ""],
     startFret: 1
   },
   F: {
     name: "F",
-    category: ["Main Chords", "F Variations", "Barre Chords"],
+    category: ["all", "main", "f-variations", "barre"],
     frets: ["1", "3", "3", "2", "1", "1"],
     fingers: ["1", "3", "4", "2", "1", "1"],
     startFret: 1,
@@ -44,8 +44,8 @@ const CHORD_LIBRARY = {
   },
   EasyF: {
     name: "Easy F",
-    aliases: ["F easy", "FEasy", "EasyF", "F_Easy"],
-    category: ["F Variations", "Beginner Variations"],
+    aliases: ["F Easy", "EasyF"],
+    category: ["all", "f-variations", "beginner"],
     frets: ["x", "x", "3", "2", "1", "1"],
     fingers: ["", "", "3", "2", "1", "1"],
     startFret: 1
@@ -53,54 +53,51 @@ const CHORD_LIBRARY = {
   FMaj7: {
     name: "FMaj7",
     aliases: ["Fmaj7", "Fmaj"],
-    category: ["F Variations", "Beginner Variations"],
+    category: ["all", "f-variations", "beginner"],
     frets: ["x", "x", "3", "2", "1", "0"],
     fingers: ["", "", "3", "2", "1", ""],
     startFret: 1
   },
+  Fm: {
+    name: "Fm",
+    category: ["all", "minor", "fm-variations", "barre"],
+    frets: ["1", "3", "3", "1", "1", "1"],
+    fingers: ["1", "3", "4", "1", "1", "1"],
+    startFret: 1,
+    barre: { fret: 1, fromString: 0, toString: 5 }
+  },
+  Fm7: {
+    name: "Fm7",
+    category: ["all", "minor", "fm-variations", "barre"],
+    frets: ["1", "3", "1", "1", "1", "1"],
+    fingers: ["1", "3", "1", "1", "1", "1"],
+    startFret: 1,
+    barre: { fret: 1, fromString: 0, toString: 5 }
+  },
   Am: {
     name: "Am",
-    category: ["Main Chords", "Minor Chords", "Open Chords"],
+    category: ["all", "minor", "open"],
     frets: ["x", "0", "2", "2", "1", "0"],
     fingers: ["", "", "2", "3", "1", ""],
     startFret: 1
   },
   Em: {
     name: "Em",
-    category: ["Main Chords", "Minor Chords", "Open Chords"],
+    category: ["all", "minor", "open"],
     frets: ["0", "2", "2", "0", "0", "0"],
     fingers: ["", "2", "3", "", "", ""],
     startFret: 1
   },
   Dm: {
     name: "Dm",
-    category: ["Main Chords", "Minor Chords", "Open Chords"],
+    category: ["all", "minor", "open"],
     frets: ["x", "x", "0", "2", "3", "1"],
     fingers: ["", "", "", "2", "3", "1"],
     startFret: 1
   },
-  Fm: {
-    name: "Fm",
-    aliases: ["Fm Barre", "F minor"],
-    category: ["Minor Chords", "F Variations", "Fm Variations", "Barre Chords"],
-    frets: ["1", "3", "3", "1", "1", "1"],
-    fingers: ["1", "3", "4", "1", "1", "1"],
-    startFret: 1,
-    barre: { fret: 1, fromString: 0, toString: 5 }
-  },
-  EasyFm: {
-    name: "Easy Fm",
-    aliases: ["Fm Easy", "EasyFm", "F_m_Easy"],
-    category: ["Fm Variations", "Beginner Variations"],
-    frets: ["x", "x", "3", "1", "1", "1"],
-    fingers: ["", "", "3", "1", "1", "1"],
-    startFret: 1,
-    barre: { fret: 1, fromString: 3, toString: 5 }
-  },
   B: {
     name: "B",
-    aliases: ["B Barre"],
-    category: ["Main Chords", "B Variations", "Barre Chords"],
+    category: ["all", "main", "b-variations", "barre"],
     frets: ["x", "2", "4", "4", "4", "2"],
     fingers: ["", "1", "3", "3", "3", "1"],
     startFret: 1,
@@ -108,16 +105,14 @@ const CHORD_LIBRARY = {
   },
   B7: {
     name: "B7",
-    aliases: ["Easy B", "B Easy"],
-    category: ["B Variations", "Beginner Variations", "Open Chords"],
+    category: ["all", "b-variations", "beginner"],
     frets: ["x", "2", "1", "2", "0", "2"],
     fingers: ["", "2", "1", "3", "", "4"],
     startFret: 1
   },
   Bm: {
     name: "Bm",
-    aliases: ["Bm Barre", "B minor"],
-    category: ["Minor Chords", "B Variations", "Bm Variations", "Barre Chords"],
+    category: ["all", "minor", "bm-variations", "barre"],
     frets: ["x", "2", "4", "4", "3", "2"],
     fingers: ["", "1", "3", "4", "2", "1"],
     startFret: 1,
@@ -126,17 +121,29 @@ const CHORD_LIBRARY = {
   EasyBm: {
     name: "Easy Bm",
     aliases: ["Bm Easy", "EasyBm"],
-    category: ["Bm Variations", "B Variations", "Beginner Variations"],
-    frets: ["x", "x", "4", "4", "3", "2"],
-    fingers: ["", "", "3", "4", "2", "1"],
+    category: ["all", "minor", "bm-variations", "beginner"],
+    frets: ["x", "x", "0", "4", "3", "2"],
+    fingers: ["", "", "", "3", "2", "1"],
     startFret: 1
   },
   Bm7: {
     name: "Bm7",
-    aliases: ["Easy Bm7"],
-    category: ["Bm Variations", "B Variations", "Beginner Variations"],
+    category: ["all", "minor", "bm-variations", "beginner"],
     frets: ["x", "2", "0", "2", "0", "2"],
     fingers: ["", "1", "", "2", "", "3"],
     startFret: 1
   }
 };
+
+const CHORD_CATEGORIES = [
+  { id: "all", label: "All Chords" },
+  { id: "main", label: "Main Chords" },
+  { id: "open", label: "Open Chords" },
+  { id: "minor", label: "Minor Chords" },
+  { id: "f-variations", label: "F Variations" },
+  { id: "fm-variations", label: "Fm Variations" },
+  { id: "b-variations", label: "B Variations" },
+  { id: "bm-variations", label: "Bm Variations" },
+  { id: "barre", label: "Barre Chords" },
+  { id: "beginner", label: "Beginner Variations" }
+];
