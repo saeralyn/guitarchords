@@ -5,6 +5,10 @@
   "language": "Chinese / English",
   "level": "Beginner",
   "capo": "No Capo",
+  "chordList": [
+    "C",
+    "G"
+  ],
   "chords": "C · G",
   "time": "4/4",
   "tempo": "60 BPM",
@@ -169,23 +173,6 @@
       ]
     }
   ],
-  "tab": {
-    "systems": [
-      {
-        "title": "Simple TAB-style rhythm guide",
-        "lines": [
-          "e|--x---x-x---x---x-x--|",
-          "B|--x---x-x---x---x-x--|",
-          "G|--x---x-x---x---x-x--|",
-          "D|--x---x-x---x---x-x--|",
-          "A|--x---x-x---x---x-x--|",
-          "E|--x---x-x---x---x-x--|",
-          "    ↓   ↓ ↑   ↑   ↓ ↑",
-          "    两  只 老 虎  两 只 老 虎"
-        ]
-      }
-    ]
-  },
   "capoNotes": [
     [
       "No Capo",
@@ -210,8 +197,6 @@
   ],
   "practiceNotes": [
     "先用 No Capo 练顺。",
-    "如果唱起来太低，可以试 Capo 2。",
-    "如果 Capo 2 太高，就试 Capo 1。",
-    "先慢慢唱稳，再追求刷法完整。"
+    "如果唱起来太低，可以试 Capo 2。"
   ]
 }

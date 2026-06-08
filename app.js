@@ -30,10 +30,119 @@ function createBadge(text) {
   return `<span class="badge">${text}</span>`;
 }
 
+function normalizeChordName(chord) {
+  return chord.trim().replace(/\s+/g, "");
+}
+
+function getChordNamesFromSong(song) {
+  if (Array.isArray(song.chordList)) {
+    return song.chordList.map(normalizeChordName);
+  }
+
+  if (song.chords) {
+    return song.chords
+      .split(/[·,\/\s]+/)
+      .map(normalizeChordName)
+      .filter(Boolean);
+  }
+
+  const fromLines = (song.lines || []).map(line => normalizeChordName(line.chord || "")).filter(Boolean);
+  return [...new Set(fromLines)];
+}
+
+function findChordDefinition(chordName) {
+  if (CHORD_LIBRARY[chordName]) return CHORD_LIBRARY[chordName];
+
+  return Object.values(CHORD_LIBRARY).find(chord =>
+    chord.name === chordName || (chord.aliases || []).includes(chordName)
+  );
+}
+
+function renderChordDiagram(chord) {
+  const width = 150;
+  const height = 190;
+  const left = 26;
+  const top = 42;
+  const stringGap = 18;
+  const fretGap = 24;
+  const strings = 6;
+  const frets = 5;
+
+  let svg = `
+    <div class="chord-card">
+      <div class="chord-name">${chord.name}</div>
+      <svg class="chord-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="${chord.name} chord diagram">
+        <text x="${left}" y="24" class="small-label">E</text>
+        <text x="${left + stringGap}" y="24" class="small-label">A</text>
+        <text x="${left + stringGap * 2}" y="24" class="small-label">D</text>
+        <text x="${left + stringGap * 3}" y="24" class="small-label">G</text>
+        <text x="${left + stringGap * 4}" y="24" class="small-label">B</text>
+        <text x="${left + stringGap * 5}" y="24" class="small-label">e</text>
+  `;
+
+  for (let i = 0; i < strings; i++) {
+    const x = left + i * stringGap;
+    svg += `<line x1="${x}" y1="${top}" x2="${x}" y2="${top + fretGap * frets}" class="chord-line" />`;
+  }
+
+  for (let i = 0; i <= frets; i++) {
+    const y = top + i * fretGap;
+    const className = i === 0 ? "nut-line" : "chord-line";
+    svg += `<line x1="${left}" y1="${y}" x2="${left + stringGap * (strings - 1)}" y2="${y}" class="${className}" />`;
+  }
+
+  if (chord.barre) {
+    const y = top + (chord.barre.fret - 0.5) * fretGap;
+    const x1 = left + chord.barre.fromString * stringGap;
+    const x2 = left + chord.barre.toString * stringGap;
+    svg += `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" class="barre-line" />`;
+  }
+
+  chord.frets.forEach((fret, i) => {
+    const x = left + i * stringGap;
+    if (fret === "x" || fret === "X") {
+      svg += `<text x="${x}" y="${top - 10}" class="mute-open">x</text>`;
+    } else if (String(fret) === "0") {
+      svg += `<text x="${x}" y="${top - 10}" class="mute-open">o</text>`;
+    } else {
+      const fretNumber = Number(fret);
+      const y = top + (fretNumber - 0.5) * fretGap;
+      const finger = chord.fingers?.[i] || "";
+      if (!chord.barre || chord.barre.fret !== fretNumber || finger !== "1") {
+        svg += `<circle cx="${x}" cy="${y}" r="8" class="finger-dot" />`;
+        if (finger) svg += `<text x="${x}" y="${y + 4}" class="finger-text">${finger}</text>`;
+      }
+    }
+  });
+
+  svg += `
+      </svg>
+    </div>
+  `;
+
+  return svg;
+}
+
+function renderChordGrid(targetSelector, chordNames) {
+  const target = document.querySelector(targetSelector);
+  if (!target) return;
+
+  const uniqueNames = [...new Set(chordNames)];
+  const diagrams = uniqueNames
+    .map(name => findChordDefinition(name))
+    .filter(Boolean)
+    .map(renderChordDiagram)
+    .join("");
+
+  target.innerHTML = diagrams || `<p class="muted">No chord diagrams available yet.</p>`;
+}
+
 function renderHomePage() {
   const grid = document.querySelector("#songGrid");
   const searchInput = document.querySelector("#searchInput");
   const levelFilter = document.querySelector("#levelFilter");
+
+  renderChordGrid("#chordLibraryGrid", Object.keys(CHORD_LIBRARY));
 
   if (!grid) return;
 
@@ -78,7 +187,7 @@ function getSongById(id) {
 function renderTab(tab) {
   if (!tab || !tab.systems || tab.systems.length === 0) return "";
 
-  return tab.systems.map((system, index) => {
+  return tab.systems.map(system => {
     const title = system.title ? `<p class="tab-title">${system.title}</p>` : "";
     const lines = system.lines.join("\n");
     return `${title}<pre class="tab-staff">${lines}</pre>`;
@@ -121,6 +230,8 @@ function renderSongPage() {
       <div class="info-card"><span>Level</span><strong>${song.level || "-"}</strong></div>
     </div>
   `;
+
+  renderChordGrid("#songChordGrid", getChordNamesFromSong(song));
 
   strummingBox.innerHTML = `
     <div class="pattern">${song.strumming?.pattern || "-"}</div>
@@ -197,6 +308,7 @@ async function start() {
   } catch (error) {
     console.error(error);
     showStatus(error.message, "error");
+    renderChordGrid("#chordLibraryGrid", Object.keys(CHORD_LIBRARY));
   }
 }
 

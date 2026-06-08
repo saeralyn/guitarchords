@@ -10,14 +10,15 @@
   <header class="site-header">
     <nav class="nav">
       <a class="logo" href="index.html">🎸 Saeralyn Chords</a>
-      <a href="index.html">Home</a>
+      <a href="#songs">Songs</a>
+      <a href="#chords">Chord Library</a>
     </nav>
 
     <section class="hero">
       <p class="eyebrow">Personal Guitar Songbook</p>
       <h1>My Guitar Chord Library</h1>
       <p class="hero-text">
-        Add a new JSON file into the songs folder. GitHub Actions will update the song list automatically.
+        Store songs, chord diagrams, strumming patterns, capo notes, and guitar practice sheets.
       </p>
     </section>
   </header>
@@ -34,9 +35,15 @@
 
     <section class="status-card" id="statusBox">Loading songs...</section>
 
-    <section>
+    <section id="songs">
       <h2 class="section-title">Song List</h2>
       <div id="songGrid" class="song-grid"></div>
+    </section>
+
+    <section id="chords" class="card">
+      <h2>Chord Library</h2>
+      <p class="muted">Common open chords. These diagrams are auto-detected and shown inside each song page.</p>
+      <div id="chordLibraryGrid" class="chord-grid"></div>
     </section>
   </main>
 
@@ -44,6 +51,7 @@
     Built as a personal guitar practice site.
   </footer>
 
+  <script src="chords.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

@@ -11,12 +11,19 @@
     <nav class="nav">
       <a class="logo" href="index.html">🎸 Saeralyn Chords</a>
       <a href="index.html">Home</a>
+      <a href="index.html#chords">Chord Library</a>
     </nav>
   </header>
 
   <main class="container">
     <section id="statusBox" class="status-card">Loading song...</section>
     <section id="songHero" class="song-hero"></section>
+
+    <section class="card" id="songChordSection">
+      <h2>Chords Used</h2>
+      <p class="muted">Auto-detected from this song’s chord list.</p>
+      <div id="songChordGrid" class="chord-grid"></div>
+    </section>
 
     <section class="card">
       <h2>Strumming Pattern</h2>
@@ -30,9 +37,7 @@
 
     <section class="card optional" id="tabSection">
       <h2>Guitar TAB / Rhythm</h2>
-      <p class="muted">
-        This section is for 六线谱 / TAB-style rhythm. It is not a full automatic music score engine yet.
-      </p>
+      <p class="muted">六线谱 / TAB-style rhythm guide.</p>
       <div id="tabBox" class="tab-box"></div>
     </section>
 
@@ -51,6 +56,7 @@
     <a href="index.html">← Back to Home</a>
   </footer>
 
+  <script src="chords.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

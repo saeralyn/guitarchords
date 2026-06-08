@@ -120,6 +120,7 @@ input, select {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 16px;
+  margin-bottom: 24px;
 }
 
 .song-card {
@@ -195,6 +196,75 @@ input, select {
 }
 
 .info-card strong { font-size: 18px; }
+
+.chord-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.chord-card {
+  background: #f8fafc;
+  color: #0f172a;
+  border-radius: 18px;
+  padding: 14px 10px 8px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.chord-name {
+  font-weight: 900;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.chord-svg {
+  width: 128px;
+  max-width: 100%;
+  height: auto;
+}
+
+.chord-line {
+  stroke: #111827;
+  stroke-width: 1.5;
+}
+
+.nut-line {
+  stroke: #111827;
+  stroke-width: 4;
+}
+
+.barre-line {
+  stroke: #111827;
+  stroke-width: 16;
+  stroke-linecap: round;
+}
+
+.finger-dot {
+  fill: #111827;
+}
+
+.finger-text {
+  fill: #ffffff;
+  font-size: 10px;
+  text-anchor: middle;
+  font-weight: 800;
+}
+
+.mute-open {
+  fill: #111827;
+  font-size: 13px;
+  text-anchor: middle;
+  font-weight: 900;
+}
+
+.small-label {
+  fill: #64748b;
+  font-size: 9px;
+  text-anchor: middle;
+  font-weight: 700;
+}
 
 .code-box {
   background: var(--code);
