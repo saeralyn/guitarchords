@@ -149,7 +149,7 @@ const CHORD_LIBRARY = {
   },
   "G7": {
     name: "G7",
-    category: ["all"],
+    category: ["all", "open", "beginner"],
     frets: ["3", "2", "0", "0", "0", "1"],
     fingers: ["3", "2", "", "", "", "1"],
     startFret: 1
