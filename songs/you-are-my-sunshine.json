@@ -117,7 +117,7 @@
               },
               {
                 "chord": "A",
-                "position": 32
+                "position": 34
               }
             ]
           },
@@ -130,7 +130,7 @@
               },
               {
                 "chord": "A",
-                "position": 32
+                "position": 34
               }
             ]
           },
@@ -238,7 +238,7 @@
               },
               {
                 "chord": "A",
-                "position": 32
+                "position": 34
               }
             ]
           },
@@ -251,7 +251,7 @@
               },
               {
                 "chord": "A",
-                "position": 32
+                "position": 34
               }
             ]
           },
@@ -260,11 +260,11 @@
             "chords": [
               {
                 "chord": "A",
-                "position": 10
+                "position": 12
               },
               {
                 "chord": "E",
-                "position": 20
+                "position": 22
               },
               {
                 "chord": "A",
@@ -272,15 +272,15 @@
               },
               {
                 "chord": "A/D",
-                "position": 35
+                "position": 36
               },
               {
                 "chord": "A/C#",
-                "position": 37
+                "position": 40
               },
               {
                 "chord": "A",
-                "position": 43
+                "position": 44
               }
             ]
           }
