@@ -60,7 +60,7 @@
               },
               {
                 "chord": "A",
-                "position": 27
+                "position": 28
               }
             ]
           },
@@ -69,11 +69,11 @@
             "chords": [
               {
                 "chord": "D",
-                "position": 7
+                "position": 8
               },
               {
                 "chord": "A",
-                "position": 27
+                "position": 28
               }
             ]
           },
@@ -82,15 +82,15 @@
             "chords": [
               {
                 "chord": "A",
-                "position": 5
+                "position": 6
               },
               {
                 "chord": "E",
-                "position": 12
+                "position": 13
               },
               {
                 "chord": "A",
-                "position": 24
+                "position": 28
               }
             ]
           }
@@ -113,11 +113,11 @@
             "chords": [
               {
                 "chord": "D",
-                "position": 12
+                "position": 13
               },
               {
                 "chord": "A",
-                "position": 24
+                "position": 28
               }
             ]
           },
@@ -126,11 +126,11 @@
             "chords": [
               {
                 "chord": "D",
-                "position": 12
+                "position": 11
               },
               {
                 "chord": "A",
-                "position": 24
+                "position": 29
               }
             ]
           },
@@ -139,15 +139,15 @@
             "chords": [
               {
                 "chord": "A",
-                "position": 12
+                "position": 14
               },
               {
                 "chord": "E",
-                "position": 20
+                "position": 22
               },
               {
                 "chord": "A",
-                "position": 27
+                "position": 30
               }
             ]
           }
