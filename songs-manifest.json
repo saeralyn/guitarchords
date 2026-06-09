@@ -13,5 +13,10 @@
     "id": "you-are-my-sunshine",
     "title": "You Are My Sunshine",
     "path": "songs/you-are-my-sunshine.json"
+  },
+  {
+  "id": "alphabet-song",
+  "title": "The Alphabet Song",
+  "path": "songs/alphabet-song.json"
   }
 ]
