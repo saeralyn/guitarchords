@@ -69,7 +69,7 @@
             "chords": [
               {
                 "chord": "D",
-                "position": 8
+                "position": 10
               },
               {
                 "chord": "A",
@@ -86,11 +86,11 @@
               },
               {
                 "chord": "E",
-                "position": 13
+                "position": 15
               },
               {
                 "chord": "A",
-                "position": 28
+                "position": 26
               }
             ]
           }
@@ -117,7 +117,7 @@
               },
               {
                 "chord": "A",
-                "position": 28
+                "position": 32
               }
             ]
           },
@@ -130,7 +130,7 @@
               },
               {
                 "chord": "A",
-                "position": 29
+                "position": 32
               }
             ]
           },
@@ -147,7 +147,7 @@
               },
               {
                 "chord": "A",
-                "position": 30
+                "position": 32
               }
             ]
           }
@@ -164,54 +164,54 @@
         "name": "Verse 2",
         "lines": [
           {
-            "lyric": "[Add verse 2 line 1 here]",
+            "lyric": "[I've always loved you and made you happy]",
             "chords": [
               {
                 "chord": "A",
-                "position": 0
+                "position": 12
               }
             ]
           },
           {
-            "lyric": "[Add verse 2 line 2 here]",
+            "lyric": "[And nothing else could come between]",
             "chords": [
               {
                 "chord": "D",
-                "position": 0
+                "position": 13
               },
               {
                 "chord": "A",
-                "position": 24
+                "position": 28
               }
             ]
           },
           {
-            "lyric": "[Add verse 2 line 3 here]",
+            "lyric": "[But now you've left me to love another]",
             "chords": [
               {
                 "chord": "D",
-                "position": 0
+                "position": 10
               },
               {
                 "chord": "A",
-                "position": 24
+                "position": 28
               }
             ]
           },
           {
-            "lyric": "[Add verse 2 line 4 here]",
+            "lyric": "[You have shattered all of my dreams]",
             "chords": [
               {
                 "chord": "A",
-                "position": 0
+                "position": 6
               },
               {
                 "chord": "E",
-                "position": 12
+                "position": 15
               },
               {
                 "chord": "A",
-                "position": 24
+                "position": 26
               }
             ]
           }
@@ -221,19 +221,19 @@
         "name": "Final Chorus Ending",
         "lines": [
           {
-            "lyric": "[Add final ending line here]",
+            "lyric": "[Please don't take my sunshine away]",
             "chords": [
               {
                 "chord": "A",
-                "position": 0
+                "position": 6
               },
               {
                 "chord": "E",
-                "position": 12
+                "position": 15
               },
               {
                 "chord": "A",
-                "position": 24
+                "position": 26
               },
               {
                 "chord": "A/D",
