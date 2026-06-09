@@ -1,7 +1,7 @@
 {
   "id": "you-are-my-sunshine",
   "title": "You Are My Sunshine",
-  "subtitle": "Beginner A / D / E chord sheet practice",
+  "subtitle": "Intermediate A / D / E chord sheet practice",
   "language": "English",
   "level": "Intermediate",
   "capo": "No Capo",
@@ -276,11 +276,11 @@
               },
               {
                 "chord": "A/C#",
-                "position": 40
+                "position": 44
               },
               {
                 "chord": "A",
-                "position": 44
+                "position": 50
               }
             ]
           }
