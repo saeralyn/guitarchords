@@ -147,7 +147,7 @@ const CHORD_LIBRARY = {
     fingers: ["", "2", "1", "1", "1", ""],
     startFret: 1
   },
-  "G7#": {
+  "G7": {
     name: "G7",
     category: ["all"],
     frets: ["3", "2", "0", "0", "0", "1"],
