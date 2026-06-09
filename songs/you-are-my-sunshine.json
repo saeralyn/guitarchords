@@ -19,9 +19,9 @@
   "tempo": "80 BPM",
   "key": "A",
   "strumming": {
-    "pattern": "↓ ↓↑↓ ↓ ↑",
+    "pattern": "↓  ↓↑ ↓ ↓ ↑",
     "count": "Count: 1  &  2  & ",
-    "note": "Use the same basic down/down-up/up/down-up pattern. For this song, keep the feel gentle and even."
+    "note": "Use down/down-up/down/down-up pattern. For this song, keep the feel gentle and even."
   },
   "chordSheet": {
     "notes": [
@@ -35,8 +35,8 @@
       {
         "name": "Intro",
         "progression": [
-          "| A | A | D | A |",
-          "| D | A | A E | A |"
+          "| A  | A  | D   | A  |",
+          "| D  | A  | A E | A "
         ]
       },
       {
@@ -100,54 +100,54 @@
         "name": "Chorus",
         "lines": [
           {
-            "lyric": "[Add chorus line 1 here]",
+            "lyric": "[You are my sunshine, my only sunshine]",
             "chords": [
               {
                 "chord": "A",
-                "position": 0
+                "position": 12
               }
             ]
           },
           {
-            "lyric": "[Add chorus line 2 here]",
+            "lyric": "[You make me happy, when skies are gray]",
             "chords": [
               {
                 "chord": "D",
-                "position": 0
-              },
-              {
-                "chord": "A",
-                "position": 24
-              }
-            ]
-          },
-          {
-            "lyric": "[Add chorus line 3 here]",
-            "chords": [
-              {
-                "chord": "D",
-                "position": 0
-              },
-              {
-                "chord": "A",
-                "position": 24
-              }
-            ]
-          },
-          {
-            "lyric": "[Add chorus ending line here]",
-            "chords": [
-              {
-                "chord": "A",
-                "position": 0
-              },
-              {
-                "chord": "E",
                 "position": 12
               },
               {
                 "chord": "A",
                 "position": 24
+              }
+            ]
+          },
+          {
+            "lyric": "[You never know dear, how much I love you]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 12
+              },
+              {
+                "chord": "A",
+                "position": 24
+              }
+            ]
+          },
+          {
+            "lyric": "[Please don't take my sunshine away]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 12
+              },
+              {
+                "chord": "E",
+                "position": 20
+              },
+              {
+                "chord": "A",
+                "position": 27
               }
             ]
           }
