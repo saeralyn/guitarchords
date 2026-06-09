@@ -35,8 +35,7 @@
       {
         "name": "Intro",
         "progression": [
-          "| A  | A  | D   | A  |",
-          "| D  | A  | A E | A "
+          "| A  | A  | D   | A  | D  | A  | A E | A ",
         ]
       },
       {
@@ -190,7 +189,7 @@
             "chords": [
               {
                 "chord": "D",
-                "position": 15
+                "position": 17
               },
               {
                 "chord": "A",
@@ -203,11 +202,11 @@
             "chords": [
               {
                 "chord": "A",
-                "position": 10
+                "position": 12
               },
               {
                 "chord": "E",
-                "position": 18
+                "position": 20
               },
               {
                 "chord": "A",
@@ -238,7 +237,7 @@
               },
               {
                 "chord": "A",
-                "position": 34
+                "position": 36
               }
             ]
           },
@@ -260,11 +259,11 @@
             "chords": [
               {
                 "chord": "A",
-                "position": 12
+                "position": 14
               },
               {
                 "chord": "E",
-                "position": 22
+                "position": 24
               },
               {
                 "chord": "A",
@@ -280,7 +279,7 @@
               },
               {
                 "chord": "A",
-                "position": 50
+                "position": 51
               }
             ]
           }
