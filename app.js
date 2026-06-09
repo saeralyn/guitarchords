@@ -192,11 +192,11 @@ function renderSongCards(targetSelector, songs, compact = false) {
 }
 
 function renderHomePage() {
-  const latestGrid = document.querySelector("#latestSongsGrid");
+  const latestGrid = document.querySelector("#latestSongsGrid") || document.querySelector("#songGrid");
   if (!latestGrid) return;
 
   const latestSongs = allSongs.slice(0, 5);
-  renderSongCards("#latestSongsGrid", latestSongs, true);
+  renderSongCards(`#${latestGrid.id}`, latestSongs, true);
 }
 
 function renderSongsPage() {
