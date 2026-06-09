@@ -136,15 +136,15 @@ const CHORD_LIBRARY = {
   "A/D": {
     name: "A/D",
     category: ["all", "slash", "a-variations"],
-    frets: ["x", "5", "2", "2", "2", "x"],
-    fingers: ["", "4", "1", "1", "1", ""],
+    frets: ["x", "x", "0", "2", "2", "0"],
+    fingers: ["", "", "", "1", "2", ""],
     startFret: 1
   },
   "A/C#": {
     name: "A/C#",
     category: ["all", "slash", "a-variations"],
-    frets: ["x", "4", "2", "2", "2", "x"],
-    fingers: ["", "3", "1", "1", "1", ""],
+    frets: ["x", "4", "2", "2", "2", "0"],
+    fingers: ["", "2", "1", "1", "1", ""],
     startFret: 1
   }
 };
