@@ -168,7 +168,7 @@
             "chords": [
               {
                 "chord": "A",
-                "position": 12
+                "position": 13
               }
             ]
           },
@@ -181,7 +181,7 @@
               },
               {
                 "chord": "A",
-                "position": 28
+                "position": 34
               }
             ]
           },
@@ -190,11 +190,11 @@
             "chords": [
               {
                 "chord": "D",
-                "position": 10
+                "position": 15
               },
               {
                 "chord": "A",
-                "position": 28
+                "position": 34
               }
             ]
           },
@@ -203,15 +203,15 @@
             "chords": [
               {
                 "chord": "A",
-                "position": 6
+                "position": 10
               },
               {
                 "chord": "E",
-                "position": 15
+                "position": 18
               },
               {
                 "chord": "A",
-                "position": 26
+                "position": 32
               }
             ]
           }
@@ -221,27 +221,62 @@
         "name": "Final Chorus Ending",
         "lines": [
           {
+            "lyric": "[You are my sunshine, my only sunshine]",
+            "chords": [
+              {
+                "chord": "A",
+                "position": 12
+              }
+            ]
+          },
+          {
+            "lyric": "[You make me happy, when skies are gray]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 13
+              },
+              {
+                "chord": "A",
+                "position": 32
+              }
+            ]
+          },
+          {
+            "lyric": "[You never know dear, how much I love you]",
+            "chords": [
+              {
+                "chord": "D",
+                "position": 11
+              },
+              {
+                "chord": "A",
+                "position": 32
+              }
+            ]
+          },
+          {
             "lyric": "[Please don't take my sunshine away]",
             "chords": [
               {
                 "chord": "A",
-                "position": 6
+                "position": 10
               },
               {
                 "chord": "E",
-                "position": 15
+                "position": 20
               },
               {
                 "chord": "A",
-                "position": 26
+                "position": 32
               },
               {
                 "chord": "A/D",
-                "position": 30
+                "position": 35
               },
               {
                 "chord": "A/C#",
-                "position": 36
+                "position": 37
               },
               {
                 "chord": "A",
@@ -251,6 +286,7 @@
           }
         ]
       }
+
     ]
   },
   "tab": {
