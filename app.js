@@ -10,7 +10,7 @@ function showStatus(message, type = "normal") {
 async function loadManifest() {
   const response = await fetch("songs-manifest.json?cache=" + Date.now());
   if (!response.ok) {
-    throw new Error("Cannot load songs-manifest.json. Check whether GitHub Actions generated it.");
+    throw new Error("Cannot load songs-manifest.json.");
   }
   return response.json();
 }
@@ -44,9 +44,7 @@ function normalizeChordName(chord) {
 }
 
 function getChordNamesFromSong(song) {
-  if (Array.isArray(song.chordList)) {
-    return song.chordList.map(normalizeChordName);
-  }
+  if (Array.isArray(song.chordList)) return song.chordList.map(normalizeChordName);
 
   if (song.chords) {
     return song.chords
@@ -55,13 +53,11 @@ function getChordNamesFromSong(song) {
       .filter(Boolean);
   }
 
-  const fromLines = (song.lines || []).map(line => normalizeChordName(line.chord || "")).filter(Boolean);
-  return [...new Set(fromLines)];
+  return [...new Set((song.lines || []).map(line => normalizeChordName(line.chord)).filter(Boolean))];
 }
 
 function findChordDefinition(chordName) {
   if (CHORD_LIBRARY[chordName]) return CHORD_LIBRARY[chordName];
-
   return Object.values(CHORD_LIBRARY).find(chord =>
     chord.name === chordName || (chord.aliases || []).includes(chordName)
   );
@@ -118,7 +114,6 @@ function renderChordDiagram(chord) {
       const y = top + (fretNumber - 0.5) * fretGap;
       const finger = chord.fingers?.[i] || "";
       const hiddenByBarre = chord.barre && chord.barre.fret === fretNumber && finger === "1";
-
       if (!hiddenByBarre) {
         svg += `<circle cx="${x}" cy="${y}" r="8" class="finger-dot" />`;
         if (finger) svg += `<text x="${x}" y="${y + 4}" class="finger-text">${finger}</text>`;
@@ -126,11 +121,7 @@ function renderChordDiagram(chord) {
     }
   });
 
-  svg += `
-      </svg>
-    </div>
-  `;
-
+  svg += `</svg></div>`;
   return svg;
 }
 
@@ -145,29 +136,20 @@ function renderChordGrid(targetSelector, chordNames) {
     .map(renderChordDiagram)
     .join("");
 
-  target.innerHTML = diagrams || `<p class="muted">No chord diagrams available yet.</p>`;
+  target.innerHTML = diagrams || `<p class="muted">No chord diagrams available.</p>`;
 }
 
-function getChordsByCategory(categoryId) {
-  return Object.values(CHORD_LIBRARY)
-    .filter(chord => {
-      if (!chord.category) return categoryId === "all";
-      if (Array.isArray(chord.category)) return chord.category.includes(categoryId);
-      return chord.category === categoryId;
-    })
-    .map(chord => chord.name);
-}
 
-function createClickableChord(chordName, className = "clickable-chord") {
+function createClickableChord(chordName, className = "inline-chord-button") {
   const cleanName = normalizeChordName(chordName);
   const chord = findChordDefinition(cleanName);
   const disabledClass = chord ? "" : " is-missing";
   const title = chord ? `Show ${cleanName} chord` : `${cleanName} chord diagram not found`;
 
   return `
-    <button 
-      type="button" 
-      class="${className}${disabledClass}" 
+    <button
+      type="button"
+      class="${className}${disabledClass}"
       data-chord="${escapeHtml(cleanName)}"
       title="${escapeHtml(title)}"
     >${escapeHtml(chordName)}</button>
@@ -179,7 +161,7 @@ function ensureChordPopup() {
 
   document.body.insertAdjacentHTML("beforeend", `
     <div id="chordPopupOverlay" class="chord-popup-overlay" hidden>
-      <div class="chord-popup-panel" role="dialog" aria-modal="true" aria-labelledby="chordPopupTitle">
+      <div class="chord-popup-panel" role="dialog" aria-modal="true">
         <button type="button" class="chord-popup-close" aria-label="Close chord popup">×</button>
         <div id="chordPopupContent"></div>
       </div>
@@ -233,47 +215,116 @@ function setupChordPopupEvents() {
   });
 }
 
-function renderHomePage() {
-  const grid = document.querySelector("#songGrid");
-  const searchInput = document.querySelector("#searchInput");
-  const levelFilter = document.querySelector("#levelFilter");
 
-  renderChordGrid("#chordLibraryGrid", Object.keys(CHORD_LIBRARY));
+function getChordsByCategory(categoryId) {
+  return Object.values(CHORD_LIBRARY)
+    .filter(chord => (chord.category || ["all"]).includes(categoryId))
+    .map(chord => chord.name);
+}
 
+function renderCategoryButtons() {
+  const holder =
+    document.querySelector("#categoryButtons") ||
+    document.querySelector("#chordCategoryButtons") ||
+    document.querySelector(".category-pills");
+
+  if (!holder) return;
+
+  holder.innerHTML = CHORD_CATEGORIES.map((cat, index) => `
+    <button class="category-pill ${index === 0 ? "active" : ""}" data-category="${cat.id}">
+      ${cat.label}
+    </button>
+  `).join("");
+
+  holder.querySelectorAll(".category-pill").forEach(button => {
+    button.addEventListener("click", () => {
+      holder.querySelectorAll(".category-pill").forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      const categoryId = button.dataset.category;
+      const title = document.querySelector("#chordCategoryTitle");
+      if (title) {
+        const label = CHORD_CATEGORIES.find(cat => cat.id === categoryId)?.label || "Chord Diagrams";
+        title.textContent = label;
+      }
+
+      renderChordGrid("#chordLibraryGrid", getChordsByCategory(categoryId));
+    });
+  });
+}
+
+function renderSongCards(targetSelector, songs, compact = false) {
+  const grid = document.querySelector(targetSelector);
   if (!grid) return;
 
-  function renderList() {
-    const keyword = searchInput?.value.toLowerCase().trim() || "";
-    const level = levelFilter?.value || "all";
-
-    const filteredSongs = allSongs.filter(song => {
-      const searchable = `${song.title} ${song.subtitle} ${song.chords} ${song.language} ${song.level}`.toLowerCase();
-      const matchesKeyword = searchable.includes(keyword);
-      const matchesLevel = level === "all" || song.level === level;
-      return matchesKeyword && matchesLevel;
-    });
-
-    grid.innerHTML = filteredSongs.map(song => `
-      <a class="song-card" href="song.html?id=${song.id}">
+  grid.innerHTML = songs.map(song => {
+    const chordNames = getChordNamesFromSong(song);
+    return `
+      <a class="song-card" href="song.html?id=${encodeURIComponent(song.id)}">
         <h3>${song.title}</h3>
         <p>${song.subtitle || ""}</p>
         <div class="meta-line">
           ${createBadge(song.level || "Unknown")}
-          ${createBadge(song.chords || "-")}
+          ${createBadge(song.chords || chordNames.join(" · ") || "-")}
           ${createBadge(song.capo || "No Capo")}
           ${createBadge(song.tempo || "-")}
+          ${createBadge(`${chordNames.length} Chord${chordNames.length === 1 ? "" : "s"}`)}
         </div>
       </a>
-    `).join("");
+    `;
+  }).join("");
 
-    if (filteredSongs.length === 0) {
-      grid.innerHTML = `<p class="muted">No song found.</p>`;
-    }
+  if (songs.length === 0) grid.innerHTML = `<p class="muted">No song found.</p>`;
+}
+
+function renderHomePage() {
+  const latestGrid = document.querySelector("#latestSongsGrid") || document.querySelector("#songGrid");
+  if (!latestGrid) return;
+
+  const latestSongs = allSongs.slice(0, 5);
+  renderSongCards(`#${latestGrid.id}`, latestSongs, true);
+}
+
+function renderSongsPage() {
+  const grid = document.querySelector("#allSongsGrid") || document.querySelector("#songGrid");
+  const levelFilter = document.querySelector("#levelFilter");
+  const chordFilter = document.querySelector("#chordFilter");
+
+  if (!grid || !levelFilter || !chordFilter) return;
+
+  const allChordNames = [...new Set(allSongs.flatMap(getChordNamesFromSong))].sort();
+  chordFilter.innerHTML = `<option value="all">All Chords</option>` +
+    allChordNames.map(chord => `<option value="${chord}">${chord}</option>`).join("");
+
+  function renderFilteredSongs() {
+    const level = levelFilter.value;
+    const chord = chordFilter.value;
+
+    const filtered = allSongs.filter(song => {
+      const chordNames = getChordNamesFromSong(song);
+      const matchesLevel = level === "all" || song.level === level;
+      const matchesChord = chord === "all" || chordNames.includes(chord);
+      return matchesLevel && matchesChord;
+    });
+
+    renderSongCards(`#${grid.id}`, filtered);
   }
 
-  searchInput?.addEventListener("input", renderList);
-  levelFilter?.addEventListener("change", renderList);
-  renderList();
+  levelFilter.addEventListener("change", renderFilteredSongs);
+  chordFilter.addEventListener("change", renderFilteredSongs);
+  renderFilteredSongs();
+}
+
+function renderChordLibraryPage() {
+  const grid = document.querySelector("#chordLibraryGrid");
+  if (!grid) return;
+
+  renderCategoryButtons();
+
+  const title = document.querySelector("#chordCategoryTitle");
+  if (title) title.textContent = "All Chords";
+
+  renderChordGrid("#chordLibraryGrid", getChordsByCategory("all"));
 }
 
 function getSongById(id) {
@@ -282,13 +333,13 @@ function getSongById(id) {
 
 function renderTab(tab) {
   if (!tab || !tab.systems || tab.systems.length === 0) return "";
-
   return tab.systems.map(system => {
     const title = system.title ? `<p class="tab-title">${system.title}</p>` : "";
     const lines = system.lines.join("\n");
     return `${title}<pre class="tab-staff">${lines}</pre>`;
   }).join("");
 }
+
 
 function padChordLine(chords, lyric) {
   const length = Math.max(lyric.length, 1);
@@ -316,16 +367,18 @@ function renderChordSheetSections(song) {
           <h3>[${escapeHtml(section.name)}]</h3>
           ${
             section.progression
-              ? `<pre class="progression-row">${section.progression.map(escapeHtml).join("\n")}</pre>`
+              ? `<pre class="progression-row">${section.progression.map(escapeHtml).join("
+")}</pre>`
               : ""
           }
           ${
             (section.lines || []).map(line => {
               const lyric = line.lyric || "";
               const chords = line.chords || [];
+              const lineChars = Math.max(lyric.length, 24);
 
               return `
-                <div class="chord-sheet-line-wrap" style="--line-chars: ${Math.max(lyric.length, 24)};">
+                <div class="chord-sheet-line-wrap" style="--line-chars: ${lineChars};">
                   <div class="chord-sheet-chord-row">
                     ${chords.map(item => `
                       <span class="floating-chord" style="--chord-pos: ${Math.max(0, item.position || 0)};">
@@ -343,6 +396,7 @@ function renderChordSheetSections(song) {
     </div>
   `;
 }
+
 
 function renderGridSheet(song) {
   return (song.lines || []).map(line => {
@@ -370,22 +424,6 @@ function renderGridSheet(song) {
   }).join("");
 }
 
-function renderPhraseSheet(song) {
-  const phrases = song.phrases || [];
-
-  return `
-    <div class="phrase-sheet">
-      ${phrases.map(phrase => `
-        <article class="phrase-block">
-          <div class="phrase-chord">${createClickableChord(phrase.chord, "phrase-chord-button")}</div>
-          <div class="phrase-pattern">${escapeHtml(phrase.strumming || song.strumming?.pattern || "")}</div>
-          <div class="phrase-lyrics">${escapeHtml(phrase.lyrics || "")}</div>
-        </article>
-      `).join("")}
-    </div>
-  `;
-}
-
 function renderSongPage() {
   const hero = document.querySelector("#songHero");
   const strummingBox = document.querySelector("#strummingBox");
@@ -410,89 +448,89 @@ function renderSongPage() {
   document.title = song.title;
   showStatus("Song loaded.", "success");
 
-  const formatLabel = song.sheetType === "chord-sheet"
-    ? "Chord Sheet"
-    : song.sheetType === "phrase"
-      ? "Phrase Practice"
-      : "Strumming Grid";
+  const formatLabel = song.sheetType === "chord-sheet" ? "Chord Sheet" : "Strumming Grid";
 
   hero.innerHTML = `
-    <h1>${escapeHtml(song.title)}</h1>
-    <p>${escapeHtml(song.subtitle || "")}</p>
+    <h1>${song.title}</h1>
+    <p>${song.subtitle || ""}</p>
     <div class="info-grid">
       <div class="info-card"><span>Format</span><strong class="song-format-badge">${formatLabel}</strong></div>
-      <div class="info-card"><span>Capo</span><strong>${escapeHtml(song.capo || "No Capo")}</strong></div>
-      <div class="info-card"><span>Chords</span><strong>${escapeHtml(song.chords || "-")}</strong></div>
-      <div class="info-card"><span>Time</span><strong>${escapeHtml(song.time || "-")}</strong></div>
-      <div class="info-card"><span>Tempo</span><strong>${escapeHtml(song.tempo || "-")}</strong></div>
-      <div class="info-card"><span>Key</span><strong>${escapeHtml(song.key || "-")}</strong></div>
-      <div class="info-card"><span>Level</span><strong>${escapeHtml(song.level || "-")}</strong></div>
+      <div class="info-card"><span>Capo</span><strong>${song.capo || "No Capo"}</strong></div>
+      <div class="info-card"><span>Chords</span><strong>${song.chords || "-"}</strong></div>
+      <div class="info-card"><span>Time</span><strong>${song.time || "-"}</strong></div>
+      <div class="info-card"><span>Tempo</span><strong>${song.tempo || "-"}</strong></div>
+      <div class="info-card"><span>Key</span><strong>${song.key || "-"}</strong></div>
+      <div class="info-card"><span>Level</span><strong>${song.level || "-"}</strong></div>
     </div>
   `;
 
   renderChordGrid("#songChordGrid", getChordNamesFromSong(song));
 
-  strummingBox.innerHTML = `
-    <div class="pattern">${escapeHtml(song.strumming?.pattern || "-")}</div>
-    <div class="count">${escapeHtml(song.strumming?.count || "")}</div>
-    <p class="note-text">${escapeHtml(song.strumming?.note || "")}</p>
-  `;
+  if (strummingBox) {
+    strummingBox.innerHTML = `
+      <div class="pattern">${song.strumming?.pattern || "-"}</div>
+      <div class="count">${song.strumming?.count || ""}</div>
+      <p class="note-text">${song.strumming?.note || ""}</p>
+    `;
+  }
 
   if (song.sheetType === "chord-sheet") {
     sheet.innerHTML = renderChordSheetSections(song);
-  } else if (song.sheetType === "phrase") {
-    sheet.innerHTML = renderPhraseSheet(song);
   } else {
     sheet.innerHTML = renderGridSheet(song);
   }
 
   const renderedTab = renderTab(song.tab);
-  if (renderedTab) {
+  if (renderedTab && tabBox && tabSection) {
     tabBox.innerHTML = renderedTab;
     tabSection.classList.remove("hidden");
-  } else {
+  } else if (tabSection) {
     tabSection.classList.add("hidden");
   }
 
-  capoNotes.innerHTML = `
-    <table class="capo-table">
-      <thead>
-        <tr>
-          <th>Capo</th>
-          <th>Chord Shapes</th>
-          <th>Actual Sound</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${(song.capoNotes || []).map(row => `
+  if (capoNotes) {
+    capoNotes.innerHTML = `
+      <table class="capo-table">
+        <thead>
           <tr>
-            <td>${escapeHtml(row[0])}</td>
-            <td>${escapeHtml(row[1])}</td>
-            <td>${escapeHtml(row[2])}</td>
+            <th>Capo</th>
+            <th>Chord Shapes</th>
+            <th>Actual Sound</th>
           </tr>
-        `).join("")}
-      </tbody>
-    </table>
-  `;
+        </thead>
+        <tbody>
+          ${(song.capoNotes || []).map(row => `
+            <tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td></tr>
+          `).join("")}
+        </tbody>
+      </table>
+    `;
+  }
 
-  practiceNotes.innerHTML = `
-    <ul class="note-list">
-      ${(song.practiceNotes || []).map(note => `<li>${escapeHtml(note)}</li>`).join("")}
-    </ul>
-  `;
+  if (practiceNotes) {
+    practiceNotes.innerHTML = `
+      <ul class="note-list">
+        ${(song.practiceNotes || []).map(note => `<li>${note}</li>`).join("")}
+      </ul>
+    `;
+  }
 }
+
 
 async function start() {
   try {
     setupChordPopupEvents();
     allSongs = await loadSongs();
     showStatus(`${allSongs.length} song(s) loaded.`, "success");
+
     renderHomePage();
+    renderSongsPage();
+    renderChordLibraryPage();
     renderSongPage();
   } catch (error) {
     console.error(error);
     showStatus(error.message, "error");
-    renderChordGrid("#chordLibraryGrid", Object.keys(CHORD_LIBRARY));
+    renderChordLibraryPage();
   }
 }
 
