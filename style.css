@@ -757,3 +757,95 @@ input, select {
 .tab-builder-lyric {
   color: #0f172a;
 }
+
+.tab-line-score {
+  position: relative;
+  background: #f8fafc;
+  color: #0f172a;
+  border-radius: 18px;
+  padding: 54px 24px 72px;
+  margin-bottom: 34px;
+  overflow-x: auto;
+  min-width: 760px;
+}
+
+.tab-line-chords {
+  position: absolute;
+  left: 58px;
+  right: 28px;
+  top: 18px;
+  height: 24px;
+}
+
+.tab-line-chord {
+  position: absolute;
+  transform: translateX(-50%);
+  color: #2563eb;
+  font-weight: 900;
+  font-size: 18px;
+}
+
+.tab-line-staff {
+  display: grid;
+}
+
+.tab-line-row {
+  display: flex;
+  align-items: center;
+  height: 28px;
+}
+
+.tab-string-name {
+  width: 28px;
+  font-family: monospace;
+  color: #0f172a;
+}
+
+.tab-line-horizontal {
+  position: relative;
+  flex: 1;
+  min-width: 660px;
+  border-top: 2px solid #0f172a;
+}
+
+.tab-line-bar {
+  position: absolute;
+  top: -14px;
+  height: 28px;
+  border-left: 2px solid #0f172a;
+}
+
+.tab-line-note {
+  position: absolute;
+  top: -13px;
+  transform: translateX(-50%);
+  background: #f8fafc;
+  padding: 0 4px;
+  font-family: monospace;
+  font-weight: 900;
+}
+
+.tab-line-numbers,
+.tab-line-lyrics {
+  position: relative;
+  margin-left: 28px;
+  min-width: 660px;
+  height: 28px;
+}
+
+.tab-line-number,
+.tab-line-lyric {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.tab-line-number {
+  font-family: monospace;
+  font-weight: 900;
+}
+
+.tab-line-lyrics {
+  margin-top: 6px;
+  font-size: 18px;
+}
