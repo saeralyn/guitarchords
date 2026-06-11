@@ -260,22 +260,66 @@ function renderTab(tab) {
   if (!tab || !tab.systems || tab.systems.length === 0) return "";
 
   return tab.systems.map(system => {
-    const title = system.title ? `<p class="tab-title">${escapeHtml(system.title)}</p>` : "";
+    const title = system.title
+      ? `<p class="tab-title">${escapeHtml(system.title)}</p>`
+      : "";
 
     if (system.builder) {
+
+      const chords =
+        system.builder.chords
+          ? system.builder.chords.split(/\s+/)
+          : [];
+
+      const numbers =
+        system.builder.numbers
+          ? system.builder.numbers.split(/\s+/)
+          : [];
+
+      const lyrics =
+        system.builder.lyrics
+          ? system.builder.lyrics.split(/\s+/)
+          : [];
+
+      const total =
+        Math.max(chords.length, numbers.length, lyrics.length);
+
       return `
         ${title}
+
         <div class="tab-builder">
-          <p><strong>Chords:</strong> ${escapeHtml(system.builder.chords || "")}</p>
-          <p><strong>Numbers:</strong> ${escapeHtml(system.builder.numbers || "")}</p>
-          <p><strong>Lyrics:</strong> ${escapeHtml(system.builder.lyrics || "")}</p>
+
+          <div class="tab-builder-row chords">
+            ${chords.map(ch =>
+              `<span class="tab-item chord">${ch}</span>`
+            ).join("")}
+          </div>
+
+          <div class="tab-builder-row numbers">
+            ${numbers.map(n =>
+              `<span class="tab-item number">${n}</span>`
+            ).join("")}
+          </div>
+
+          <div class="tab-builder-row lyrics">
+            ${lyrics.map(w =>
+              `<span class="tab-item lyric">${w}</span>`
+            ).join("")}
+          </div>
+
         </div>
       `;
     }
 
-    const lines = Array.isArray(system.lines) ? system.lines.join("\n") : "";
+    const lines =
+      Array.isArray(system.lines)
+        ? system.lines.join("\n")
+        : "";
 
-    return `${title}<pre class="tab-staff">${escapeHtml(lines)}</pre>`;
+    return `
+      ${title}
+      <pre class="tab-staff">${escapeHtml(lines)}</pre>
+    `;
   }).join("");
 }
 
