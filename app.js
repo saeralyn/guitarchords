@@ -473,6 +473,8 @@ function renderSongPage() {
 
   if (song.sheetType === "chord-sheet") {
     sheet.innerHTML = renderChordSheetSections(song);
+  } else if (song.sheetType === "tab") {
+    sheet.innerHTML = "";
   } else {
     sheet.innerHTML = renderGridSheet(song);
   }
