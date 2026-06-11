@@ -268,12 +268,17 @@ function renderTab(tab) {
 
     return `
       <div class="tab-line-score">
-        <div class="tab-line-chords">
-          ${(line.chords || []).map(chord => `
-            <span class="tab-line-chord" style="left:${chord.pos}%">
-              ${escapeHtml(chord.name)}
-            </span>
-          `).join("")}
+        <div class="tab-line-chord-diagrams">
+          ${(line.chords || []).map(chord => {
+            const def = findChordDefinition(chord.name);
+
+            return `
+              <div class="tab-line-chord-diagram" style="left:${chord.pos}%">
+                ${def ? renderChordDiagram(def) : ""}
+                <div class="tab-line-chord-name">${escapeHtml(chord.name)}</div>
+              </div>
+            `;
+          }).join("")}
         </div>
 
         <div class="tab-line-staff">
