@@ -663,3 +663,97 @@ input, select {
   margin-top: 4px;
   color: #0f172a;
 }
+
+
+/* Line-by-line TAB display */
+.tab-line-list {
+  display: grid;
+  gap: 30px;
+  color: #0f172a;
+}
+
+.tab-phrase {
+  padding: 4px 0 10px;
+}
+
+.tab-phrase-chord {
+  font-size: 22px;
+  font-weight: 900;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+
+.tab-mini-staff {
+  width: 100%;
+  max-width: 760px;
+  margin-bottom: 10px;
+}
+
+.tab-mini-row {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.tab-string-name {
+  width: 26px;
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+  color: #0f172a;
+}
+
+.tab-mini-line {
+  flex: 1;
+  border-top: 2px solid #0f172a;
+  position: relative;
+  min-width: 280px;
+}
+
+.tab-note {
+  position: absolute;
+  left: 42px;
+  top: -13px;
+  background: #f8fafc;
+  padding: 0 5px;
+  font-weight: 800;
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+  color: #0f172a;
+}
+
+.tab-phrase-numbers {
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+  font-weight: 800;
+  margin-top: 8px;
+  color: #0f172a;
+}
+
+.tab-phrase-lyrics {
+  font-size: 18px;
+  margin-top: 4px;
+  color: #0f172a;
+}
+
+.tab-builder-simple {
+  display: grid;
+  gap: 10px;
+  color: #0f172a;
+}
+
+.tab-builder-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tab-builder-chord {
+  font-weight: 900;
+  color: #2563eb;
+}
+
+.tab-builder-number {
+  font-weight: 800;
+  color: #92400e;
+}
+
+.tab-builder-lyric {
+  color: #0f172a;
+}
