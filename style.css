@@ -849,3 +849,17 @@ input, select {
   margin-top: 6px;
   font-size: 18px;
 }
+
+.tab-line-chord-diagrams {
+  position: relative;
+  height: 210px;
+  margin-left: 28px;
+  min-width: 660px;
+}
+
+.tab-line-chord-diagram {
+  position: absolute;
+  transform: translateX(-50%) scale(0.72);
+  transform-origin: top center;
+  top: 0;
+}
