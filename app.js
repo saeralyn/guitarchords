@@ -1,5 +1,16 @@
 let allSongs = [];
 
+function escapeHtml(str) {
+  if (str == null) return "";
+
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function showStatus(message, type = "normal") {
   const statusBox = document.querySelector("#statusBox");
   if (!statusBox) return;
