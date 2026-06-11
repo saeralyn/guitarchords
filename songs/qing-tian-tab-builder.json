@@ -50,7 +50,7 @@
             { "string": "D", "text": "x", "pos": 84 },
             { "string": "e", "text": "x", "pos": 90 },
             { "string": "B", "text": "x", "pos": 90 },
-            { "string": "G", "text": "x", "pos": 96 }
+            { "string": "G", "text": "x", "pos": 95 }
             
           ],
           "lyrics": [
@@ -61,7 +61,7 @@
           ]
         }
       }
-    ],
+    ]
       {
         "title": "Pre-Chorus / Solfege",
         "tabLine": {
