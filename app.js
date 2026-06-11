@@ -275,7 +275,7 @@ function renderTab(tab) {
             return `
               <div class="tab-line-chord-diagram" style="left:${chord.pos}%">
                 ${def ? renderChordDiagram(def) : ""}
-                <div class="tab-line-chord-name">${escapeHtml(chord.name)}</div>
+               
               </div>
             `;
           }).join("")}
