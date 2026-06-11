@@ -343,7 +343,14 @@ function renderTab(tab) {
         ${["e", "B", "G", "D", "A", "E"].map(stringName => `
           <div class="tab-real-line">
             <span class="tab-string-name">${stringName}</span>
-            <span class="tab-horizontal-line"></span>
+            
+            <span class="tab-horizontal-line">
+              ${(system.barLines || []).map(pos => `
+                  <span class="tab-bar" style="left:${pos}%"></span>
+                    `).join("")}
+
+            </span>
+          
           </div>
         `).join("")}
       </div>
