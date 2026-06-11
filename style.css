@@ -763,7 +763,7 @@ input, select {
   background: #f8fafc;
   color: #0f172a;
   border-radius: 18px;
-  padding: 54px 24px 72px;
+  padding: 180px 24px 72px;
   margin-bottom: 34px;
   overflow-x: auto;
   min-width: 760px;
@@ -862,4 +862,29 @@ input, select {
   transform: translateX(-50%) scale(0.72);
   transform-origin: top center;
   top: 0;
+}
+
+.tab-line-chord-diagrams {
+  position: relative;
+  height: 150px;
+  margin-left: 28px;
+  min-width: 660px;
+}
+
+.tab-line-chord-diagram {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%) scale(0.55);
+  transform-origin: top center;
+}
+
+.tab-line-chord-name {
+  text-align: center;
+  font-weight: 900;
+  color: #2563eb;
+  margin-top: -10px;
+}
+
+.tab-line-chord-diagram .chord-card {
+  margin: 0;
 }
