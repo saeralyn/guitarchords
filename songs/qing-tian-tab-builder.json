@@ -23,31 +23,31 @@
           "bars": 4,
           "chords": [
             { "name": "Em", "pos": 4 },
-            { "name": "G", "pos": 40 },
-            { "name": "Em", "pos": 74 },
-            { "name": "G", "pos": 92 }
+            { "name": "G", "pos": 27 },
+            { "name": "Em", "pos": 52 },
+            { "name": "G", "pos": 77 }
           ],
           "notes": [
             { "string": "E", "text": "x", "pos": 4 },
             { "string": "D", "text": "x", "pos": 10 },
-            { "string": "e", "text": "x", "pos": 14 },
-            { "string": "B", "text": "x", "pos": 14 },
-            { "string": "G", "text": "x", "pos": 16 },
+            { "string": "e", "text": "x", "pos": 15 },
+            { "string": "B", "text": "x", "pos": 15 },
+            { "string": "G", "text": "x", "pos": 23 },
             
-            { "string": "E", "text": "x", "pos": 42 },
-            { "string": "D", "text": "x", "pos": 48 },
-            { "string": "e", "text": "x", "pos": 56 },
-            { "string": "B", "text": "x", "pos": 64 },
-            { "string": "G", "text": "x", "pos": 72 },
+            { "string": "E", "text": "x", "pos": 25 },
+            { "string": "D", "text": "x", "pos": 35 },
+            { "string": "e", "text": "x", "pos": 43 },
+            { "string": "B", "text": "x", "pos": 43 },
+            { "string": "G", "text": "x", "pos": 48 },
             
             { "string": "e", "text": "x", "pos": 72 },
             { "string": "E", "text": "x", "pos": 92 }
           ],
           "lyrics": [
             { "text": "故事的小黄花", "pos": 6 },
-            { "text": "从出生那年就飘着", "pos": 42 },
-            { "text": "童年的荡秋千", "pos": 74 },
-            { "text": "随记忆一直晃到现在", "pos": 92 }
+            { "text": "从出生那年就飘着", "pos": 27 },
+            { "text": "童年的荡秋千", "pos": 55 },
+            { "text": "随记忆一直晃到现在", "pos": 78 }
           ]
         }
       },
