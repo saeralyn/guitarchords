@@ -22,24 +22,27 @@
         "tabLine": {
           "bars": 4,
           "chords": [
-            { "name": "Em", "pos": 8 },
-            { "name": "G", "pos": 32 },
-            { "name": "Em", "pos": 56 },
-            { "name": "G", "pos": 80 }
+            { "name": "Em", "pos": 4 },
+            { "name": "G", "pos": 30 },
+            { "name": "Em", "pos": 50 },
+            { "name": "G", "pos": 70 }
           ],
           "notes": [
-            { "string": "e", "text": "x", "pos": 8 },
-            { "string": "E", "text": "x", "pos": 8 },
+            { "string": "E", "text": "x", "pos": 4 },
+            { "string": "D", "text": "x", "pos": 8 },
+            { "string": "e", "text": "x", "pos": 10 },
+            { "string": "B", "text": "x", "pos": 10 },
+            { "string": "C", "text": "x", "pos": 12 },
             { "string": "E", "text": "3", "pos": 32 },
             { "string": "e", "text": "x", "pos": 56 },
             { "string": "E", "text": "x", "pos": 56 },
             { "string": "E", "text": "3", "pos": 80 }
           ],
           "lyrics": [
-            { "text": "故事的小黄花", "pos": 8 },
-            { "text": "从出生那年就飘着", "pos": 32 },
-            { "text": "童年的荡秋千", "pos": 56 },
-            { "text": "随记忆一直晃到现在", "pos": 80 }
+            { "text": "故事的小黄花", "pos": 4 },
+            { "text": "从出生那年就飘着", "pos": 30 },
+            { "text": "童年的荡秋千", "pos": 50 },
+            { "text": "随记忆一直晃到现在", "pos": 70 }
           ]
         }
       },
