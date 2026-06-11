@@ -1,45 +1,28 @@
 {
   "id": "qing-tian",
   "title": "晴天",
-  "subtitle": "TAB builder mode practice",
+  "subtitle": "Song builder practice",
   "language": "Chinese",
   "level": "Intermediate",
   "capo": "No Capo",
   "sheetType": "tab",
-  "chordList": [
-    "Em",
-    "G",
-    "D",
-    "C",
-    "Bm"
-  ],
+  "chordList": ["Em", "G", "D", "C", "Bm"],
   "chords": "Em · G · D · C · Bm",
   "time": "4/4",
   "tempo": "80 BPM",
   "key": "G",
   "capoNotes": [
-    [
-      "No Capo",
-      "G / Em / C / D / Bm",
-      "G 调"
-    ]
+    ["No Capo", "G / Em / C / D / Bm", "G 调"]
   ],
   "tab": {
-    "tuning": [
-      "e",
-      "B",
-      "G",
-      "D",
-      "A",
-      "E"
-    ],
+    "tuning": ["e", "B", "G", "D", "A", "E"],
     "systems": [
       {
         "title": "Verse 1",
         "bars": 4,
         "builder": {
           "chords": "Em G Em G",
-          "lyrics": "故 事 的 小 黄 花 从 出 生 那 年 就 飘 着 童 年 的 荡 秋 千 随 记 忆 一 直 晃 到 现 在"
+          "lyrics": "故事 的 小黄花 / 从出生 那年 就 飘着 / 童年 的 荡秋千 / 随记忆 一直 晃到现在"
         }
       },
       {
@@ -47,8 +30,8 @@
         "bars": 4,
         "builder": {
           "chords": "Em G Em G",
-          "numbers": "2 5 5 7 1 7 6 5 6 5 2 5 5 7 1 7 6 5 6 5",
-          "lyrics": "Re So So Si Do Si La So La So 吹 着 前 奏 望 着 天 空 我 想 起 花 瓣 试 着 掉 落"
+          "numbers": "2 5 5 7 1 7 6 5 / 6 5 2 5 5 7 1 7 6 5",
+          "lyrics": "Re So So Si Do Si La So La So / 吹着 前奏 望着 天空 / 我想起 花瓣 试着 掉落"
         }
       },
       {
@@ -56,7 +39,7 @@
         "bars": 4,
         "builder": {
           "chords": "Em G Em G",
-          "lyrics": "为 你 翘 课 的 那 一 天 花 落 的 那 一 天 教 室 的 那 一 间 我 怎 么 看 不 见"
+          "lyrics": "为你 翘课 的 那一天 / 花落 的 那一天 / 教室 的 那一间 / 我 怎么 看不见"
         }
       },
       {
@@ -64,7 +47,7 @@
         "bars": 4,
         "builder": {
           "chords": "Em G Em G",
-          "lyrics": "消 失 的 下 雨 天 我 好 想 再 淋 一 遍 没 想 到 失 去 的 勇 气 我 还 留 着"
+          "lyrics": "消失 的 下雨天 / 我好想 再淋 一遍 / 没想到 失去 的 勇气 / 我还 留着"
         }
       },
       {
@@ -72,7 +55,7 @@
         "bars": 4,
         "builder": {
           "chords": "D G Em C G Bm Em C D",
-          "lyrics": "换 扫 弦 进 入 副 歌 刮 风 这 天 我 试 过 握 着 你 手 但 偏 偏 雨 渐 渐 大 到 我 看 你 不 见"
+          "lyrics": "换扫弦 进入副歌 / 刮风 这天 我试过 握着你手 / 但偏偏 雨渐渐 大到 / 我看 你不见"
         }
       },
       {
@@ -80,14 +63,14 @@
         "bars": 4,
         "builder": {
           "chords": "G Em C G Bm Em C D",
-          "lyrics": "从 前 从 前 有 个 人 爱 你 很 久 但 偏 偏 风 渐 渐 把 距 离 吹 得 好 远"
+          "lyrics": "从前 从前 有个人 爱你很久 / 但偏偏 风渐渐 把距离 / 吹得 好远"
         }
       }
     ]
   },
   "practiceNotes": [
-    "This uses TAB Song Builder Mode.",
-    "bars controls the measure lines.",
-    "builder.chords, builder.numbers, and builder.lyrics are auto-spaced by the renderer."
+    "Use TAB Song Builder Mode.",
+    "Use / inside lyrics to mark phrase breaks.",
+    "bars controls the measure lines."
   ]
 }
