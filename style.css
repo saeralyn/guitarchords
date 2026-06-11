@@ -601,3 +601,65 @@ input, select {
 .tab-item.lyric{
     color:#ffffff;
 }
+
+.tab-line-list {
+  display: grid;
+  gap: 28px;
+}
+
+.tab-phrase {
+  padding: 16px 0;
+}
+
+.tab-phrase-chord {
+  font-size: 24px;
+  font-weight: 900;
+  color: #2563eb;
+  margin-bottom: 8px;
+}
+
+.tab-mini-staff {
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 8px;
+}
+
+.tab-mini-row {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.tab-string-name {
+  width: 24px;
+  font-family: monospace;
+  color: #0f172a;
+}
+
+.tab-mini-line {
+  flex: 1;
+  border-top: 2px solid #0f172a;
+  position: relative;
+}
+
+.tab-note {
+  position: absolute;
+  left: 40px;
+  top: -13px;
+  background: #f8fafc;
+  padding: 0 4px;
+  font-weight: 700;
+}
+
+.tab-phrase-numbers {
+  font-family: monospace;
+  font-weight: 700;
+  margin-top: 8px;
+  color: #0f172a;
+}
+
+.tab-phrase-lyrics {
+  font-size: 18px;
+  margin-top: 4px;
+  color: #0f172a;
+}
