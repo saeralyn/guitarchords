@@ -247,10 +247,21 @@ function getSongById(id) {
 
 function renderTab(tab) {
   if (!tab || !tab.systems || tab.systems.length === 0) return "";
+
   return tab.systems.map(system => {
     const title = system.title ? `<p class="tab-title">${system.title}</p>` : "";
-    const lines = system.lines.join("\n");
-    return `${title}<pre class="tab-staff">${lines}</pre>`;
+
+    return `
+      ${title}
+      <div class="tab-staff-real">
+        ${["e", "B", "G", "D", "A", "E"].map(stringName => `
+          <div class="tab-real-line">
+            <span class="tab-string-name">${stringName}</span>
+            <span class="tab-horizontal-line"></span>
+          </div>
+        `).join("")}
+      </div>
+    `;
   }).join("");
 }
 
