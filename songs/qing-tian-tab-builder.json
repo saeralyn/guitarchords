@@ -29,25 +29,35 @@
           ],
           "notes": [
             { "string": "E", "text": "x", "pos": 4 },
-            { "string": "D", "text": "x", "pos": 10 },
+            { "string": "D", "text": "x", "pos": 11 },
             { "string": "e", "text": "x", "pos": 15 },
             { "string": "B", "text": "x", "pos": 15 },
             { "string": "G", "text": "x", "pos": 23 },
             
-            { "string": "E", "text": "x", "pos": 25 },
-            { "string": "D", "text": "x", "pos": 35 },
+            { "string": "E", "text": "x", "pos": 28 },
+            { "string": "D", "text": "x", "pos": 36 },
             { "string": "e", "text": "x", "pos": 43 },
             { "string": "B", "text": "x", "pos": 43 },
-            { "string": "G", "text": "x", "pos": 48 },
+            { "string": "G", "text": "x", "pos": 47 },
             
-            { "string": "e", "text": "x", "pos": 53 },
-            { "string": "E", "text": "x", "pos": 78 }
+            { "string": "E", "text": "x", "pos": 58 },
+            { "string": "D", "text": "x", "pos": 62 },
+            { "string": "e", "text": "x", "pos": 66 },
+            { "string": "B", "text": "x", "pos": 66 },
+            { "string": "G", "text": "x", "pos": 70 },
+
+            { "string": "E", "text": "x", "pos": 80 },
+            { "string": "D", "text": "x", "pos": 84 },
+            { "string": "e", "text": "x", "pos": 86 },
+            { "string": "B", "text": "x", "pos": 86 },
+            { "string": "G", "text": "x", "pos": 90 },
+            
           ],
           "lyrics": [
-            { "text": "故事的小黄花", "pos": 5 },
-            { "text": "从出生那年就飘着", "pos": 26 },
-            { "text": "童年的荡秋千", "pos": 52 },
-            { "text": "随记忆一直晃到现在", "pos": 76 }
+            { "text": "故事的小黄花", "pos": 7 },
+            { "text": "从出生那年就飘着", "pos": 28 },
+            { "text": "童年的荡秋千", "pos": 55 },
+            { "text": "随记忆一直晃到现在", "pos": 80 }
           ]
         }
       },
