@@ -874,7 +874,7 @@ input, select {
 .tab-line-chord-diagram {
   position: absolute;
   top: 0;
-  transform: translateX(-50%) scale(0.55);
+  transform: translateX(-65%) scale(0.55);
   transform-origin: top center;
 }
 
