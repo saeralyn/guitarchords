@@ -1,0 +1,106 @@
+{
+"id": "new-song",
+"title": "New Song Title",
+"subtitle": "Short description",
+"language": "Chinese / English",
+"level": "Beginner",
+"capo": "No Capo",
+
+"sheetType": "tab",
+
+"chordList": [
+"Csus2",
+"G",
+"Am",
+"G13sus4",
+"Dm7",
+"Gsus4"
+],
+
+"chords": "Csus2 · G · Am · G13sus4 · Dm7 · Gsus4",
+
+"time": "4/4",
+"tempo": "80 BPM",
+"key": "C",
+
+"capoNotes": [
+[
+"No Capo",
+"C shape",
+"C key"
+],
+[
+"Capo 2",
+"C shape",
+"D key"
+]
+],
+
+"tab": {
+"systems": [
+{
+"title": "Verse 1",
+
+
+    "chords": [
+      "Dm7",
+      "Gsus4",
+      "Csus2",
+      "C",
+      "G"
+    ],
+
+    "lines": [
+      "e|---------------------------|",
+      "B|---------------------------|",
+      "G|---------------------------|",
+      "D|---------------------------|",
+      "A|---------------------------|",
+      "E|---------------------------|"
+    ],
+
+    "numbers": [
+      "0",
+      "0",
+      "0",
+      "0",
+      "1",
+      "6",
+      "1",
+      "1",
+      "1",
+      "2",
+      "2",
+      "2",
+      "2",
+      "3",
+      "1"
+    ],
+
+    "lyrics": [
+      "对",
+      "这",
+      "个",
+      "世",
+      "界",
+      "如",
+      "果",
+      "你",
+      "有",
+      "太",
+      "多",
+      "的",
+      "抱",
+      "怨"
+    ]
+  }
+]
+
+
+},
+
+"practiceNotes": [
+"Use the TAB section as the primary reference.",
+"Chord diagrams are shown automatically from chordList."
+]
+}
