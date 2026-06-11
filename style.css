@@ -683,7 +683,15 @@ body.popup-open {
   color: #0f172a;
 }
 
-.tab-horizontal-line {
-  flex: 1;
-  border-top: 2px solid #0f172a;
+.tab-horizontal-line{
+    flex:1;
+    border-top:2px solid #0f172a;
+    position:relative;
+}
+
+.tab-bar{
+    position:absolute;
+    top:-14px;
+    height:28px;
+    border-left:2px solid #0f172a;
 }
