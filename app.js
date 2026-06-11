@@ -249,19 +249,22 @@ function renderTab(tab) {
   if (!tab || !tab.systems || tab.systems.length === 0) return "";
 
   return tab.systems.map(system => {
-    const title = system.title ? `<p class="tab-title">${system.title}</p>` : "";
+    const title = system.title ? `<p class="tab-title">${escapeHtml(system.title)}</p>` : "";
 
-    return `
-      ${title}
-      <div class="tab-staff-real">
-        ${["e", "B", "G", "D", "A", "E"].map(stringName => `
-          <div class="tab-real-line">
-            <span class="tab-string-name">${stringName}</span>
-            <span class="tab-horizontal-line"></span>
-          </div>
-        `).join("")}
-      </div>
-    `;
+    if (system.builder) {
+      return `
+        ${title}
+        <div class="tab-builder">
+          <p><strong>Chords:</strong> ${escapeHtml(system.builder.chords || "")}</p>
+          <p><strong>Numbers:</strong> ${escapeHtml(system.builder.numbers || "")}</p>
+          <p><strong>Lyrics:</strong> ${escapeHtml(system.builder.lyrics || "")}</p>
+        </div>
+      `;
+    }
+
+    const lines = Array.isArray(system.lines) ? system.lines.join("\n") : "";
+
+    return `${title}<pre class="tab-staff">${escapeHtml(lines)}</pre>`;
   }).join("");
 }
 
