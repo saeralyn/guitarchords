@@ -20,8 +20,8 @@
   "path": "songs/alphabet-song.json"
   },
   {
-  "id": "new-song",
-  "title": "New Song",
-  "path": "songs/new-song.json"
+    "id": "qing-tian",
+    "title": "晴天",
+    "path": "songs/qing-tian-tab-builder.json"
   }
 ]
