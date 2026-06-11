@@ -261,10 +261,72 @@ function renderTab(tab) {
 
   const stringNames = tab.tuning || ["e", "B", "G", "D", "A", "E"];
 
+  function renderTabLine(system) {
+    const line = system.tabLine;
+    const bars = line.bars || 4;
+    const barLines = Array.from({ length: bars + 1 }, (_, index) => (index * 100) / bars);
+
+    return `
+      <div class="tab-line-score">
+        <div class="tab-line-chords">
+          ${(line.chords || []).map(chord => `
+            <span class="tab-line-chord" style="left:${chord.pos}%">
+              ${escapeHtml(chord.name)}
+            </span>
+          `).join("")}
+        </div>
+
+        <div class="tab-line-staff">
+          ${stringNames.map(stringName => `
+            <div class="tab-line-row">
+              <span class="tab-string-name">${escapeHtml(stringName)}</span>
+
+              <span class="tab-line-horizontal">
+                ${barLines.map(pos => `
+                  <span class="tab-line-bar" style="left:${pos}%"></span>
+                `).join("")}
+
+                ${(line.notes || [])
+                  .filter(note => note.string === stringName)
+                  .map(note => `
+                    <span class="tab-line-note" style="left:${note.pos}%">
+                      ${escapeHtml(note.text)}
+                    </span>
+                  `).join("")}
+              </span>
+            </div>
+          `).join("")}
+        </div>
+
+        ${(line.numbers || []).length ? `
+          <div class="tab-line-numbers">
+            ${line.numbers.map(item => `
+              <span class="tab-line-number" style="left:${item.pos}%">
+                ${escapeHtml(item.text)}
+              </span>
+            `).join("")}
+          </div>
+        ` : ""}
+
+        <div class="tab-line-lyrics">
+          ${(line.lyrics || []).map(item => `
+            <span class="tab-line-lyric" style="left:${item.pos}%">
+              ${escapeHtml(item.text)}
+            </span>
+          `).join("")}
+        </div>
+      </div>
+    `;
+  }
+
   return tab.systems.map(system => {
     const title = system.title
       ? `<p class="tab-title">${escapeHtml(system.title)}</p>`
       : "";
+
+    if (system.tabLine) {
+      return `${title}${renderTabLine(system)}`;
+    }
 
     if (Array.isArray(system.lines) && typeof system.lines[0] === "object") {
       return `
@@ -273,19 +335,6 @@ function renderTab(tab) {
           ${system.lines.map(line => `
             <div class="tab-phrase">
               <div class="tab-phrase-chord">${escapeHtml(line.chord || "")}</div>
-
-              <div class="tab-mini-staff">
-                ${stringNames.map((stringName, index) => `
-                  <div class="tab-mini-row">
-                    <span class="tab-string-name">${escapeHtml(stringName)}</span>
-                    <span class="tab-mini-line">
-                      <span class="tab-note">${escapeHtml((line.tab || [])[index] || "")}</span>
-                    </span>
-                  </div>
-                `).join("")}
-              </div>
-
-              ${line.numbers ? `<div class="tab-phrase-numbers">${escapeHtml(line.numbers)}</div>` : ""}
               <div class="tab-phrase-lyrics">${escapeHtml(line.lyrics || "")}</div>
             </div>
           `).join("")}
@@ -300,7 +349,6 @@ function renderTab(tab) {
     return `${title}<pre class="tab-staff">${lines}</pre>`;
   }).join("");
 }
-
 
 function padChordLine(chords, lyric) {
   const length = Math.max(lyric.length, 1);
