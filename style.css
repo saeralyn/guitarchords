@@ -570,105 +570,41 @@ input, select {
 }
 
 
-/* Clickable chord popup */
-.chord-label-button,
-.inline-chord-button {
-  font: inherit;
-  color: var(--accent-blue);
-  background: transparent;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  font-weight: 900;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 4px;
-}
-
-.chord-label-button:hover,
-.inline-chord-button:hover {
-  color: var(--accent);
-}
-
-.is-missing {
-  color: var(--muted);
-  text-decoration-style: dashed;
-}
-
-.chord-popup-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: rgba(2, 6, 23, 0.72);
-  display: grid;
-  place-items: center;
-  padding: 20px;
-}
-
-.chord-popup-overlay[hidden] {
-  display: none;
-}
-
-.chord-popup-panel {
+/* TAB Song Builder Mode */
+.tab-builder {
   position: relative;
   background: #f8fafc;
   color: #0f172a;
-  border-radius: 24px;
-  padding: 26px;
-  max-width: min(92vw, 320px);
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  border-radius: 18px;
+  padding: 54px 22px 80px;
+  overflow-x: auto;
+  min-width: 720px;
 }
 
-.chord-popup-panel .chord-card {
-  border: 0;
-  padding: 0;
-}
-
-.chord-popup-panel .chord-svg {
-  width: 190px;
-}
-
-.chord-popup-close {
+.tab-builder-chords {
   position: absolute;
-  top: 8px;
-  right: 12px;
+  top: 18px;
+  left: 54px;
+  right: 28px;
+  height: 28px;
+}
+
+.tab-builder-chord {
+  position: absolute;
+  transform: translateX(-50%);
   border: 0;
   background: transparent;
   color: #0f172a;
-  font-size: 30px;
-  line-height: 1;
+  font-weight: 900;
+  font-size: 16px;
   cursor: pointer;
-}
-
-body.popup-open {
-  overflow: hidden;
-}
-
-/* Clickable chord-sheet positioning */
-.chord-sheet-line-wrap {
-  position: relative;
-  min-width: calc(var(--line-chars) * 1ch);
-  margin: 10px 0 16px;
-  padding-top: 26px;
-}
-
-.chord-sheet-chord-row {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 24px;
-  width: 100%;
-  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
-}
-
-.floating-chord {
-  position: absolute;
-  left: calc(var(--chord-pos) * 1ch);
-  top: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .tab-staff-real {
-  padding: 18px 0;
+  display: grid;
+  gap: 0;
 }
 
 .tab-real-line {
@@ -678,20 +614,47 @@ body.popup-open {
 }
 
 .tab-string-name {
-  width: 24px;
-  font-family: monospace;
+  width: 28px;
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+  font-weight: 700;
   color: #0f172a;
 }
 
-.tab-horizontal-line{
-    flex:1;
-    border-top:2px solid #0f172a;
-    position:relative;
+.tab-horizontal-line {
+  position: relative;
+  flex: 1;
+  border-top: 2px solid #0f172a;
+  min-width: 620px;
 }
 
-.tab-bar{
-    position:absolute;
-    top:-14px;
-    height:28px;
-    border-left:2px solid #0f172a;
+.tab-bar {
+  position: absolute;
+  top: -13px;
+  height: 26px;
+  border-left: 2px solid #0f172a;
+}
+
+.tab-builder-numbers,
+.tab-builder-lyrics {
+  position: relative;
+  margin-left: 28px;
+  min-width: 620px;
+  height: 26px;
+  font-family: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+
+.tab-builder-number,
+.tab-builder-lyric {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: #0f172a;
+}
+
+.tab-builder-number {
+  font-weight: 900;
+}
+
+.tab-builder-lyrics {
+  margin-top: 2px;
 }
