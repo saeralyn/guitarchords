@@ -259,67 +259,45 @@ function getSongById(id) {
 function renderTab(tab) {
   if (!tab || !tab.systems || tab.systems.length === 0) return "";
 
+  const stringNames = tab.tuning || ["e", "B", "G", "D", "A", "E"];
+
   return tab.systems.map(system => {
     const title = system.title
       ? `<p class="tab-title">${escapeHtml(system.title)}</p>`
       : "";
 
-    if (system.builder) {
-
-      const chords =
-        system.builder.chords
-          ? system.builder.chords.split(/\s+/)
-          : [];
-
-      const numbers =
-        system.builder.numbers
-          ? system.builder.numbers.split(/\s+/)
-          : [];
-
-      const lyrics =
-        system.builder.lyrics
-          ? system.builder.lyrics.split(/\s+/)
-          : [];
-
-      const total =
-        Math.max(chords.length, numbers.length, lyrics.length);
-
+    if (Array.isArray(system.lines) && typeof system.lines[0] === "object") {
       return `
         ${title}
+        <div class="tab-line-list">
+          ${system.lines.map(line => `
+            <div class="tab-phrase">
+              <div class="tab-phrase-chord">${escapeHtml(line.chord || "")}</div>
 
-        <div class="tab-builder">
+              <div class="tab-mini-staff">
+                ${stringNames.map((stringName, index) => `
+                  <div class="tab-mini-row">
+                    <span class="tab-string-name">${escapeHtml(stringName)}</span>
+                    <span class="tab-mini-line">
+                      <span class="tab-note">${escapeHtml((line.tab || [])[index] || "")}</span>
+                    </span>
+                  </div>
+                `).join("")}
+              </div>
 
-          <div class="tab-builder-row chords">
-            ${chords.map(ch =>
-              `<span class="tab-item chord">${ch}</span>`
-            ).join("")}
-          </div>
-
-          <div class="tab-builder-row numbers">
-            ${numbers.map(n =>
-              `<span class="tab-item number">${n}</span>`
-            ).join("")}
-          </div>
-
-          <div class="tab-builder-row lyrics">
-            ${lyrics.map(w =>
-              `<span class="tab-item lyric">${w}</span>`
-            ).join("")}
-          </div>
-
+              ${line.numbers ? `<div class="tab-phrase-numbers">${escapeHtml(line.numbers)}</div>` : ""}
+              <div class="tab-phrase-lyrics">${escapeHtml(line.lyrics || "")}</div>
+            </div>
+          `).join("")}
         </div>
       `;
     }
 
-    const lines =
-      Array.isArray(system.lines)
-        ? system.lines.join("\n")
-        : "";
+    const lines = Array.isArray(system.lines)
+      ? system.lines.map(escapeHtml).join("\n")
+      : "";
 
-    return `
-      ${title}
-      <pre class="tab-staff">${escapeHtml(lines)}</pre>
-    `;
+    return `${title}<pre class="tab-staff">${lines}</pre>`;
   }).join("");
 }
 
