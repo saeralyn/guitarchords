@@ -447,7 +447,16 @@ function renderSongPage() {
   document.title = song.title;
   showStatus("Song loaded.", "success");
 
-  const formatLabel = song.sheetType === "chord-sheet" ? "Chord Sheet" : "Strumming Grid";
+  const sheetType =
+  song.sheetType ||
+  (song.chordSheet ? "chord-sheet" : "strumming-grid");
+
+const formatLabel =
+  sheetType === "chord-sheet"
+    ? "Chord Sheet"
+    : sheetType === "tab"
+      ? "TAB"
+      : "Strumming Grid";
 
   hero.innerHTML = `
     <h1>${song.title}</h1>
@@ -473,8 +482,10 @@ function renderSongPage() {
     `;
   }
 
-  if (song.sheetType === "chord-sheet") {
+  if (sheetType === "chord-sheet") {
     sheet.innerHTML = renderChordSheetSections(song);
+  } else if (sheetType === "tab") {
+    sheet.innerHTML = "";
   } else {
     sheet.innerHTML = renderGridSheet(song);
   }
