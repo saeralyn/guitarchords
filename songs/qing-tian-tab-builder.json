@@ -32,13 +32,13 @@
             { "string": "D", "text": "x", "pos": 10 },
             { "string": "e", "text": "x", "pos": 14 },
             { "string": "B", "text": "x", "pos": 14 },
-            { "string": "C", "text": "x", "pos": 16 },
+            { "string": "G", "text": "x", "pos": 16 },
             
             { "string": "E", "text": "x", "pos": 42 },
             { "string": "D", "text": "x", "pos": 48 },
             { "string": "e", "text": "x", "pos": 56 },
             { "string": "B", "text": "x", "pos": 64 },
-            { "string": "C", "text": "x", "pos": 72 },
+            { "string": "G", "text": "x", "pos": 72 },
             
             { "string": "e", "text": "x", "pos": 72 },
             { "string": "E", "text": "x", "pos": 92 }
