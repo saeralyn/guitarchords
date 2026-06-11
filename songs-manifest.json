@@ -18,5 +18,10 @@
   "id": "alphabet-song",
   "title": "The Alphabet Song",
   "path": "songs/alphabet-song.json"
+  },
+  {
+  "id": "new-song",
+  "title": "New Song",
+  "path": "songs/new-song.json"
   }
 ]
