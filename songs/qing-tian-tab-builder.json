@@ -48,16 +48,16 @@
 
             { "string": "E", "text": "x", "pos": 80 },
             { "string": "D", "text": "x", "pos": 84 },
-            { "string": "e", "text": "x", "pos": 86 },
-            { "string": "B", "text": "x", "pos": 86 },
-            { "string": "G", "text": "x", "pos": 90 }
+            { "string": "e", "text": "x", "pos": 90 },
+            { "string": "B", "text": "x", "pos": 90 },
+            { "string": "G", "text": "x", "pos": 96 }
             
           ],
           "lyrics": [
-            { "text": "故事的小黄花", "pos": 7 },
-            { "text": "从出生那年就飘着", "pos": 28 },
-            { "text": "童年的荡秋千", "pos": 55 },
-            { "text": "随记忆一直晃到现在", "pos": 80 }
+            { "text": "故事的小黄花", "pos": 10 },
+            { "text": "从出生那年就飘着", "pos": 32 },
+            { "text": "童年的荡秋千", "pos": 65 },
+            { "text": "随记忆一直晃到现在", "pos": 85 }
           ]
         }
       }
